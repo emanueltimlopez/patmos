@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <main id="root">
+    <div hx-get="/today" hx-trigger="load" hx-target="#root"></div>
+  </main>
+
+  <nav>
+    <button hx-get="/today" hx-target="#root">H</button>
+    <button hx-get="/bookshelf" hx-target="#root">B</button>
+  </nav>
+
+  <script src="https://unpkg.com/htmx.org@1.9.9"></script>
+</body>
+</html>
