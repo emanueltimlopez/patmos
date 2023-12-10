@@ -3,14 +3,15 @@ package main
 import (
 	"net/http"
 
-	"books.app/internal/routes"
+	"github.com/emanueltimlopez/books-motivation/internal/routes"
 )
 
 func main() {
 	router := routes.NewRouter()
 
-	err := http.ListenAndServe(":8000", router)
-	if err != nil {
-		panic(err)
+	err_ := http.ListenAndServe(":8000", router)
+	if err_ != nil {
+		panic(err_)
 	}
+
 }
