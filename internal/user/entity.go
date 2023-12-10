@@ -3,6 +3,6 @@ package user
 import "github.com/google/uuid"
 
 type User struct {
-	ID   uuid.UUID
-	book string
+	ID   uuid.UUID `json:"id"`
+	Book string    `json:"book"`
 }

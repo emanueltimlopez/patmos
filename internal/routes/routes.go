@@ -2,6 +2,7 @@ package routes
 
 import (
 	"context"
+	"fmt"
 	"html/template"
 	"net/http"
 
@@ -21,6 +22,11 @@ func NewRouter() http.Handler {
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
+	tmpl := template.Must(template.ParseFiles("./web/templates/index.html"))
+	tmpl.Execute(w, nil)
+}
+
+func todayHandler(w http.ResponseWriter, r *http.Request) {
 	ctx := context.Background()
 	dbClient := supabase.InitClient()
 	dbRepository := supabase.NewSupabaseRepository(dbClient)
@@ -28,23 +34,18 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	userService := user.NewUserService(dbRepository)
 	booksService := book.NewBookService(dbRepository)
 
-	activeBook, err := userService.GetUserActiveBook(ctx, "000")
+	user, err := userService.GetUser(ctx, "b2e4f2f4-2298-4dd4-9d0f-3b57810ac1a5")
 	if err != nil {
-
+		fmt.Println(err)
 	}
 
-	book, err := booksService.GetBookByID(ctx, activeBook)
+	book, err := booksService.GetBookByID(ctx, user.Book)
 	if err != nil {
-
+		fmt.Println(err)
 	}
 
-	tmpl := template.Must(template.ParseFiles("./web/templates/index.html"))
-	tmpl.Execute(w, book)
-}
-
-func todayHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("./web/templates/today.html"))
-	tmpl.Execute(w, nil)
+	tmpl.Execute(w, book)
 }
 
 func booksHandler(w http.ResponseWriter, r *http.Request) {

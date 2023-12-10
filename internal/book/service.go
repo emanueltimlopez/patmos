@@ -14,10 +14,7 @@ func NewBookService(bs Repository) *Service {
 
 func (bs *Service) GetBookByID(ctx context.Context, id string) (*Book, error) {
 	book, err := bs.repo.GetBookByID(ctx, id)
-	if err != nil {
-		return nil, err
-	}
-	return book, nil
+	return book, err
 }
 
 func (bs *Service) CreateBook(ctx context.Context, b *Book) error {

@@ -20,11 +20,12 @@ func NewSupabaseRepository(client *supa.Client) *SupabaseRepository {
 }
 
 func (sr *SupabaseRepository) GetBookByID(ctx context.Context, id string) (*book.Book, error) {
-	var results *book.Book
-	err := sr.client.DB.From("books").Select("*").Eq("id", id).Execute(&results)
-	fmt.Println(results)
-
-	return results, err
+	var result *book.Book
+	err := sr.client.DB.From("books").Select("*").Single().Eq("id", id).Execute(&result)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return result, err
 }
 
 func (sr *SupabaseRepository) CreateBook(ctx context.Context, book *book.Book) error {
@@ -32,9 +33,10 @@ func (sr *SupabaseRepository) CreateBook(ctx context.Context, book *book.Book) e
 }
 
 func (sr *SupabaseRepository) GetUser(ctx context.Context, id string) (*user.User, error) {
-	var results *user.User
-	err := sr.client.DB.From("users").Select("*").Eq("id", id).Execute(&results)
-	fmt.Println(results)
-
-	return results, err
+	var result *user.User
+	err := sr.client.DB.From("users").Select("*").Single().Eq("id", id).Execute(&result)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return result, err
 }
