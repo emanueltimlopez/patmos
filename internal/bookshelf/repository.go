@@ -1,11 +1,12 @@
-package shelf
+package bookshelf
 
 import (
 	"context"
+
+	"github.com/emanueltimlopez/books-motivation/internal/book"
 )
 
 type Repository interface {
-	GetShelfByID(ctx context.Context, id string) (*BookShelf, error)
-	CreateShelf(ctx context.Context, shelf BookShelf) error
-	UpdateShelf(ctx context.Context, id string, shelf BookShelf) error
+	GetUserBooks(ctx context.Context, id string) ([]book.Book, error)
+	AddBook(ctx context.Context, id string, book book.Book) error
 }

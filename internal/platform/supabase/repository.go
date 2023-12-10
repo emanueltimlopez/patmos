@@ -40,3 +40,16 @@ func (sr *SupabaseRepository) GetUser(ctx context.Context, id string) (*user.Use
 	}
 	return result, err
 }
+
+func (sr *SupabaseRepository) GetUserBooks(ctx context.Context, id string) ([]book.Book, error) {
+	var result []book.Book
+	err := sr.client.DB.From("users_books").Select("*").Eq("user_id", id).Execute(&result)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return result, err
+}
+
+func (sr *SupabaseRepository) AddBook(ctx context.Context, id string, book book.Book) error {
+	return nil
+}
