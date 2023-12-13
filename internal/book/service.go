@@ -1,6 +1,8 @@
 package book
 
-import "context"
+import (
+	"context"
+)
 
 type Service struct {
 	repo Repository
@@ -17,7 +19,7 @@ func (bs *Service) GetBookByID(ctx context.Context, id string) (*Book, error) {
 	return book, err
 }
 
-func (bs *Service) CreateBook(ctx context.Context, b *Book) error {
-	err := bs.repo.CreateBook(ctx, b)
+func (bs *Service) CreateBook(ctx context.Context, b Book, id string) error {
+	err := bs.repo.CreateBook(ctx, b, id)
 	return err
 }

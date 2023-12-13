@@ -1,8 +1,9 @@
 package book
 
-import "github.com/google/uuid"
-
 type Book struct {
-	ID   uuid.UUID `json:"id"`
-	Name string    `json:"name"`
+	ID     string `json:"id"`
+	Title  string `json:"title"`
+	Pages  int    `json:"pages"`
+	Words  int    `json:"words"`
+	Author string `json:"author"`
 }
