@@ -2,7 +2,7 @@
   <h3>Booksshelf</h3>
   <ul>
     {{range .}}
-      <li>{{ .Book.Title }}</li>
+      <li>{{ .Book.Title }} by {{ .Book.Author }}</li>
     {{ end }}
   </ul>
   <button hx-get="/add-book" hx-target="#root">Add book</button>

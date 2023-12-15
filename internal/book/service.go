@@ -14,7 +14,7 @@ func NewBookService(bs Repository) *Service {
 	}
 }
 
-func (bs *Service) GetBookByID(ctx context.Context, id string) (*Book, error) {
+func (bs *Service) GetBook(ctx context.Context, id string) (*Book, error) {
 	book, err := bs.repo.GetBookByID(ctx, id)
 	return book, err
 }

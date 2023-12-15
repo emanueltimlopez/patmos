@@ -1,0 +1,9 @@
+<div>
+  <h3>Goal</h3>
+  <ul>
+    {{range .}}
+      <li>{{ .Title }}</li>
+    {{ end }}
+  </ul>
+  <button hx-get="/add-goal" hx-target="#root">Create Goal</button>
+</div>

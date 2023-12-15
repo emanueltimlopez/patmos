@@ -24,7 +24,7 @@ func TodayHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 	}
 
-	book, err := booksService.GetBookByID(ctx, user.Book)
+	book, err := booksService.GetBook(ctx, user.Book)
 	if err != nil {
 		fmt.Println(err)
 	}

@@ -14,6 +14,9 @@ func NewRouter() http.Handler {
 	mux.HandleFunc("/today", handlers.TodayHandler)
 	mux.HandleFunc("/add-book", handlers.AddBookHandler)
 	mux.HandleFunc("/create-book", handlers.CreateBookHandler)
+	mux.HandleFunc("/goals", handlers.GoalsHandler)
+	mux.HandleFunc("/add-goal", handlers.AddGoalHandler)
+	mux.HandleFunc("/create-goal", handlers.CreateGoalHandler)
 
 	return mux
 }

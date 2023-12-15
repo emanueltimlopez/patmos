@@ -6,6 +6,7 @@ import (
 
 	"github.com/emanueltimlopez/books-motivation/internal/book"
 	"github.com/emanueltimlopez/books-motivation/internal/bookshelf"
+	"github.com/emanueltimlopez/books-motivation/internal/goals"
 	"github.com/emanueltimlopez/books-motivation/internal/user"
 	supa "github.com/nedpals/supabase-go"
 )
@@ -70,4 +71,24 @@ func (sr *SupabaseRepository) GetUserBooks(ctx context.Context, id string) ([]*b
 
 func (sr *SupabaseRepository) AddBook(ctx context.Context, id string, book book.Book) error {
 	return nil
+}
+
+func (sr *SupabaseRepository) GetGoals(ctx context.Context, id string) ([]*goals.Goal, error) {
+	var result []*goals.Goal
+	err := sr.client.DB.From("goals").Select("*").Eq("user_id", id).Execute(&result)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return result, err
+}
+
+func (sr *SupabaseRepository) CreateGoal(ctx context.Context, goal goals.Goal) error {
+	var result []*goals.Goal
+	err := sr.client.DB.From("goals").Insert(goal).Execute(&result)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return err
 }
