@@ -1,0 +1,59 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Slab', serif;
+}
+
+body {
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+}
+
+nav.menu, nav.navbar {
+  display: flex;
+  justify-content: space-around;
+}
+
+nav.title-add {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+nav.navbar {
+  justify-content: flex-start;
+  align-items: center;
+}
+
+nav.menu button, nav.navbar button, nav.title-add button {
+  background: transparent;
+  border: none;
+}
+
+nav.navbar button {
+  height: 24px;
+}
+
+.indicator {
+  position: absolute;
+}
+
+.goals fieldset {
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.goals input {
+  padding: 5px;
+}

@@ -9,6 +9,9 @@ import (
 func NewRouter() http.Handler {
 	mux := http.NewServeMux()
 
+	fileServer := http.FileServer(http.Dir("./web/static/"))
+	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
+
 	mux.HandleFunc("/", handlers.IndexHandler)
 	mux.HandleFunc("/bookshelf", handlers.BooksHandler)
 	mux.HandleFunc("/today", handlers.TodayHandler)
