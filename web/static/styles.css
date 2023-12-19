@@ -48,12 +48,12 @@ nav.navbar button {
   position: absolute;
 }
 
-.goals fieldset {
+form fieldset {
   border: none;
   display: flex;
   flex-direction: column;
 }
 
-.goals input {
+form input {
   padding: 5px;
 }
