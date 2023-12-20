@@ -1,4 +1,4 @@
-package handlers
+package book
 
 import (
 	"context"
@@ -8,9 +8,10 @@ import (
 	"github.com/emanueltimlopez/books-motivation/internal/book"
 	"github.com/emanueltimlopez/books-motivation/internal/platform/supabase"
 	"github.com/google/uuid"
+	supa "github.com/nedpals/supabase-go"
 )
 
-func CreateBookHandler(w http.ResponseWriter, r *http.Request) {
+func CreateBookHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 	ctx := context.Background()
 	dbClient := supabase.InitClient()
 	dbRepository := supabase.NewSupabaseRepository(dbClient)
@@ -24,7 +25,7 @@ func CreateBookHandler(w http.ResponseWriter, r *http.Request) {
 		Title:  title,
 		Author: author,
 		ID:     uuid.New().String(),
-	}, "b2e4f2f4-2298-4dd4-9d0f-3b57810ac1a5")
+	}, userSupa.ID)
 
 	if err != nil {
 		fmt.Println(err)

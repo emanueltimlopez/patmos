@@ -1,4 +1,4 @@
-package handlers
+package goals
 
 import (
 	"context"
@@ -9,9 +9,10 @@ import (
 	"github.com/emanueltimlopez/books-motivation/internal/goals"
 	"github.com/emanueltimlopez/books-motivation/internal/platform/supabase"
 	"github.com/google/uuid"
+	supa "github.com/nedpals/supabase-go"
 )
 
-func CreateGoalHandler(w http.ResponseWriter, r *http.Request) {
+func CreateGoalHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 	ctx := context.Background()
 	dbClient := supabase.InitClient()
 	dbRepository := supabase.NewSupabaseRepository(dbClient)
@@ -33,7 +34,7 @@ func CreateGoalHandler(w http.ResponseWriter, r *http.Request) {
 		Quantity: quantity,
 		Days:     days,
 		ID:       uuid.New().String(),
-		UserID:   "b2e4f2f4-2298-4dd4-9d0f-3b57810ac1a5",
+		UserID:   userSupa.ID,
 	})
 
 	if err != nil {

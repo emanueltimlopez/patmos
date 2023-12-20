@@ -1,4 +1,4 @@
-package handlers
+package home
 
 import (
 	"context"
@@ -9,26 +9,34 @@ import (
 	"github.com/emanueltimlopez/books-motivation/internal/book"
 	"github.com/emanueltimlopez/books-motivation/internal/platform/supabase"
 	"github.com/emanueltimlopez/books-motivation/internal/user"
+
+	supa "github.com/nedpals/supabase-go"
 )
 
-func TodayHandler(w http.ResponseWriter, r *http.Request) {
+func TodayHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
+	tmpl := template.Must(template.ParseFiles("./web/templates/today.html"))
 	ctx := context.Background()
 	dbClient := supabase.InitClient()
+
 	dbRepository := supabase.NewSupabaseRepository(dbClient)
 
 	userService := user.NewUserService(dbRepository)
 	booksService := book.NewBookService(dbRepository)
 
-	user, err := userService.GetUser(ctx, "b2e4f2f4-2298-4dd4-9d0f-3b57810ac1a5")
+	_user, err := userService.GetUser(ctx, userSupa.ID)
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	book, err := booksService.GetBook(ctx, user.Book)
+	if _user == nil {
+		tmpl.Execute(w, nil)
+		return
+	}
+
+	book, err := booksService.GetBook(ctx, _user.Book)
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	tmpl := template.Must(template.ParseFiles("./web/templates/today.html"))
 	tmpl.Execute(w, book)
 }

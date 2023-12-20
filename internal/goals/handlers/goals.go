@@ -1,4 +1,4 @@
-package handlers
+package goals
 
 import (
 	"context"
@@ -8,15 +8,16 @@ import (
 
 	"github.com/emanueltimlopez/books-motivation/internal/goals"
 	"github.com/emanueltimlopez/books-motivation/internal/platform/supabase"
+	supa "github.com/nedpals/supabase-go"
 )
 
-func GoalsHandler(w http.ResponseWriter, r *http.Request) {
+func GoalsHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 	ctx := context.Background()
 	dbClient := supabase.InitClient()
 	dbRepository := supabase.NewSupabaseRepository(dbClient)
 
 	goalsService := goals.NewGoalService(dbRepository)
-	goals, err := goalsService.GetGoals(ctx, "b2e4f2f4-2298-4dd4-9d0f-3b57810ac1a5")
+	goals, err := goalsService.GetGoals(ctx, userSupa.ID)
 	if err != nil {
 		fmt.Println(err)
 	}
