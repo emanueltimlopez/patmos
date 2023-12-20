@@ -1,4 +1,4 @@
-package auth
+package authHandlers
 
 import (
 	"context"
@@ -10,19 +10,27 @@ import (
 )
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	email := r.Form.Get("email")
+	password := r.Form.Get("password")
+
 	ctx := context.Background()
 	supabase := supabase.InitClient()
 	_user, err := supabase.Auth.SignIn(ctx, supa.UserCredentials{
-		Email:    "timbislopez@gmail.com",
-		Password: "meneame",
+		Email:    email,
+		Password: password,
 	})
 
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("[LoginHandler:signin]", err)
 	}
 
 	http.SetCookie(w, &http.Cookie{
 		Name:  "token",
 		Value: _user.AccessToken,
 	})
+
+	w.Header().Set("HX-Redirect", "/")
+	w.WriteHeader(http.StatusTemporaryRedirect)
+	w.Write([]byte{})
 }

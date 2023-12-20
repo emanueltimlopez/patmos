@@ -25,7 +25,7 @@ func TodayHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 
 	_user, err := userService.GetUser(ctx, userSupa.ID)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("[TodayHandler:getuser]", err)
 	}
 
 	if _user == nil {
@@ -35,7 +35,7 @@ func TodayHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 
 	book, err := booksService.GetBook(ctx, _user.Book)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("[TodayHandler:getbook]", err)
 	}
 
 	tmpl.Execute(w, book)

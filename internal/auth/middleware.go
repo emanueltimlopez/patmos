@@ -18,26 +18,28 @@ type Auth struct {
 func GetAuthenticatedUser(r *http.Request) (*supa.User, error) {
 	c, err := r.Cookie("token")
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("[GetAuthenticatedUser:cookie]", err)
 		return nil, err
 	}
 	ctx := context.Background()
 	supabase := supabase.InitClient()
 	u, err := supabase.Auth.User(ctx, c.Value)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("[GetAuthenticatedUser:user]", err)
+		return nil, err
 	}
 	return u, nil
 }
 
 func (ea *Auth) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	user, err := GetAuthenticatedUser(r)
-	if err != nil {
-		http.Error(w, "Unauthorized", http.StatusUnauthorized)
-		return
+	if err != nil || user == nil {
+		w.Header().Set("Location", "/login")
+		w.WriteHeader(http.StatusTemporaryRedirect)
+		w.Write([]byte{})
+	} else {
+		ea.handler(w, r, user)
 	}
-
-	ea.handler(w, r, user)
 }
 
 func NewAuth(handler AuthenticatedHandler) *Auth {
