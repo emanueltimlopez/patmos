@@ -25,7 +25,7 @@ func BooksHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 		fmt.Println(err)
 	}
 
-	books, err := bookshelfService.GetBookShelf(ctx, user.ID.String())
+	books, err := bookshelfService.GetBookShelf(ctx, user.ID)
 	if err != nil {
 		fmt.Println(err)
 	}

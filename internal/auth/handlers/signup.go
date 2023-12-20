@@ -7,7 +7,6 @@ import (
 
 	"github.com/emanueltimlopez/books-motivation/internal/platform/supabase"
 	"github.com/emanueltimlopez/books-motivation/internal/user"
-	"github.com/google/uuid"
 	supa "github.com/nedpals/supabase-go"
 )
 
@@ -18,7 +17,7 @@ func SignupHandler(w http.ResponseWriter, r *http.Request) {
 
 	ctx := context.Background()
 	supabaseClient := supabase.InitClient()
-	_, err := supabaseClient.Auth.SignUp(ctx, supa.UserCredentials{
+	_user, err := supabaseClient.Auth.SignUp(ctx, supa.UserCredentials{
 		Email:    email,
 		Password: password,
 	})
@@ -26,12 +25,11 @@ func SignupHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println("[SignupHandler:signup]", err)
 	}
-
 	dbRepository := supabase.NewSupabaseRepository(supabaseClient)
 
 	userService := user.NewUserService(dbRepository)
 	_err := userService.CreateUser(ctx, user.User{
-		ID: uuid.New().String(),
+		ID: _user.ID,
 	})
 
 	if _err != nil {

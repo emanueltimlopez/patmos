@@ -60,7 +60,7 @@ func (sr *SupabaseRepository) GetUser(ctx context.Context, id string) (*user.Use
 }
 
 func (sr *SupabaseRepository) CreateUser(ctx context.Context, _user user.User) error {
-	var result *user.User
+	var result []*user.User
 	err := sr.client.DB.From("users").Insert(_user).Execute(&result)
 	if err != nil {
 		fmt.Println(err)
