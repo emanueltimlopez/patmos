@@ -1,23 +1,21 @@
-<div>
-  <nav class="navbar">
-    <button hx-get="/goals" hx-target="#root" hx-indicator="#indicator">
-      <svg viewBox="0 0 24 24" width="24" height="24"><path d="M19,11H9l3.29-3.29a1,1,0,0,0,0-1.42,1,1,0,0,0-1.41,0l-4.29,4.3A2,2,0,0,0,6,12H6a2,2,0,0,0,.59,1.4l4.29,4.3a1,1,0,1,0,1.41-1.42L9,13H19a1,1,0,0,0,0-2Z"/></svg>
-    </button>
-    <span>Create Goal</span>
-  </nav>
-  <form hx-post="/create-goal">
-    <fieldset>
-      <label for="title">Description</label>
-      <input id="title" name="title" type="text">
-    </fieldset>
-    <fieldset>
-      <label for="quantity">Quantity books or pages</label>
-      <input id="quantity" name="quantity" type="text">
-    </fieldset>
-    <fieldset>
-      <label for="days">Days</label>
-      <input id="days" name="days" type="text">
-    </fieldset>
-    <button type="submit">Save</button>
-  </form>
-</div>
+<nav class="navbar">
+  <button hx-get="/goals" hx-target="#root" hx-indicator="#indicator">
+    <svg viewBox="0 0 24 24" width="24" height="24"><path d="M19,11H9l3.29-3.29a1,1,0,0,0,0-1.42,1,1,0,0,0-1.41,0l-4.29,4.3A2,2,0,0,0,6,12H6a2,2,0,0,0,.59,1.4l4.29,4.3a1,1,0,1,0,1.41-1.42L9,13H19a1,1,0,0,0,0-2Z"/></svg>
+  </button>
+  <span>Create Goal</span>
+</nav>
+<form hx-post="/create-goal" class="content">
+  <fieldset>
+    <label for="title">Description</label>
+    <input id="title" name="title" type="text">
+  </fieldset>
+  <fieldset>
+    <label for="quantity">Quantity books or pages</label>
+    <input id="quantity" name="quantity" type="text">
+  </fieldset>
+  <fieldset>
+    <label for="days">Days</label>
+    <input id="days" name="days" type="text">
+  </fieldset>
+  <button type="submit">Save</button>
+</form>

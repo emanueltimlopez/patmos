@@ -27,6 +27,7 @@ func NewRouter() http.Handler {
 	mux.Handle("/today", auth.NewAuth(home.TodayHandler))
 	mux.Handle("/add-book", auth.NewAuth(book.AddBookHandler))
 	mux.Handle("/create-book", auth.NewAuth(book.CreateBookHandler))
+	mux.Handle("/search-book", auth.NewAuth(book.SearchBookHandler))
 	mux.Handle("/goals", auth.NewAuth(goals.GoalsHandler))
 	mux.Handle("/add-goal", auth.NewAuth(goals.AddGoalHandler))
 	mux.Handle("/create-goal", auth.NewAuth(goals.CreateGoalHandler))

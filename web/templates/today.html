@@ -1,6 +1,18 @@
-<div>
-  <h1>Today</h1>
-  <div>
-    <h3>{{.Title}}</h3>
+<div class="content content-headless">
+  <div class="boxes">
+    <div class="box">
+      <h3>{{ .Current }}</h3>
+      <ul class="habit">
+        {{ range .Habit }}
+        {{ if eq . 0}}<li></li>{{ end }}
+        {{ if eq . 1}}<li class="habit--good"></li>{{ end }}
+        {{ if eq . 2}}<li class="habit--very-good"></li>{{ end }}
+        {{ end }}
+      </ul>
+    </div>
+    <div class="box">
+      <span>Words per minute</span>
+      <span>0</span>
+    </div>
   </div>
 </div>

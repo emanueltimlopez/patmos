@@ -1,0 +1,5 @@
+{{range .}}
+<li>
+  <button hx-post="/set-book" hx-target="#content" hx-indicator="#indicator">{{ .Title }} - {{ .Author }}</button>
+</li>
+{{ end }}

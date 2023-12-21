@@ -6,11 +6,11 @@ html, body {
 
 body {
   height: 100vh;
-  padding: 20px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: #000;
 }
 
 main {
@@ -18,6 +18,20 @@ main {
   flex-direction: column;
   flex: 2;
 }
+
+.content {
+  background-color: #fff;
+  border-radius: 1em;
+  padding: 20px;
+  height: 100%;
+}
+
+.boxes {
+}
+
+.content-headless {
+  border-radius: 0 0 1em 1em;
+} 
 
 nav.menu, nav.navbar {
   display: flex;
@@ -27,17 +41,32 @@ nav.menu, nav.navbar {
 nav.title-add {
   display: flex;
   justify-content: space-between;
+  color: #fff;
+  padding: 0 1rem;
 }
 
+nav.title-add h1, nav.title-add h2, nav.navbar span {
+  font-weight: 200;
+}
 
 nav.navbar {
   justify-content: flex-start;
   align-items: center;
+  padding: 1em 0;
+  color: #fff;
+}
+
+nav.menu {
+  padding: 1em 0;
 }
 
 nav.menu button, nav.navbar button, nav.title-add button {
   background: transparent;
   border: none;
+}
+
+nav.menu button svg, nav.navbar button svg, nav.title-add svg {
+  fill: #fff;
 }
 
 nav.navbar button {
@@ -46,6 +75,8 @@ nav.navbar button {
 
 .indicator {
   position: absolute;
+  bottom: 2rem;
+  left: 2rem;
 }
 
 form fieldset {
@@ -56,4 +87,32 @@ form fieldset {
 
 form input {
   padding: 5px;
+}
+
+ul.habit {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+ul.habit li {
+  margin: 2px;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #999;
+}
+
+ul.habit li.habit--good {
+  background-color: #9ace40;
+}
+
+ul.habit li.habit--very-good {
+  background-color: #e86513;
+}
+
+.list-books {
+  max-height: 250px;
+  overflow: auto;
 }
