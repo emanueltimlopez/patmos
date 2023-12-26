@@ -36,7 +36,7 @@ func TodayHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 		return
 	}
 
-	currentTime := time.Now()
+	/*currentTime := time.Now()
 	currentMonth := currentTime.Month()
 	numberOfDays := daysInMonth(currentTime.Year(), currentTime.Month())
 
@@ -50,5 +50,7 @@ func TodayHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 		"Days":    numberOfDays,
 		"Habit":   habitData,
 	}
-	tmpl.Execute(w, month)
+	tmpl.Execute(w, month)*/
+
+	tmpl.Execute(w, nil)
 }

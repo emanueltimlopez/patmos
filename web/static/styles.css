@@ -116,3 +116,7 @@ ul.habit li.habit--very-good {
   max-height: 250px;
   overflow: auto;
 }
+
+.plan span {
+  font-size: 1.3em;
+}

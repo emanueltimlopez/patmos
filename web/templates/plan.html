@@ -1,0 +1,24 @@
+<nav class="title-add">
+  <h1>Plan</h1>
+</nav>
+<div class="plan content">
+  <form hx-post="/update-plan">
+    <span>I would like to dedicate</span>
+    <span><select id="minutes" name="minutes">
+      <option value="15">15</option>
+      <option value="30">30</option>
+      <option value="45">45</option>
+      <option value="60">60</option>
+    </select>
+    minutes </span>
+    <span>reading each day, splitting it into</span>
+    <span>
+      <select id="sessions" name="sessions">
+        <option value="1">one</option>
+        <option value="2">two</option>
+        <option value="3">three</option>
+        <option value="4">four</option>
+      </select>
+    separate sessions</span>
+    <button type="submit">Save</button>
+  </div>

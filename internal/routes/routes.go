@@ -9,6 +9,7 @@ import (
 	bookshelf "github.com/emanueltimlopez/books-motivation/internal/bookshelf/handlers"
 	goals "github.com/emanueltimlopez/books-motivation/internal/goals/handlers"
 	home "github.com/emanueltimlopez/books-motivation/internal/home/handlers"
+	plan "github.com/emanueltimlopez/books-motivation/internal/plan/handlers"
 )
 
 func NewRouter() http.Handler {
@@ -31,6 +32,8 @@ func NewRouter() http.Handler {
 	mux.Handle("/goals", auth.NewAuth(goals.GoalsHandler))
 	mux.Handle("/add-goal", auth.NewAuth(goals.AddGoalHandler))
 	mux.Handle("/create-goal", auth.NewAuth(goals.CreateGoalHandler))
+	mux.Handle("/plan", auth.NewAuth(plan.PlanHandler))
+	mux.Handle("/update-plan", auth.NewAuth(plan.UpdatePlanHandler))
 
 	return mux
 }

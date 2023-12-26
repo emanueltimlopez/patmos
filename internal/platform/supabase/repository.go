@@ -7,6 +7,7 @@ import (
 	"github.com/emanueltimlopez/books-motivation/internal/book"
 	"github.com/emanueltimlopez/books-motivation/internal/bookshelf"
 	"github.com/emanueltimlopez/books-motivation/internal/goals"
+	"github.com/emanueltimlopez/books-motivation/internal/plan"
 	"github.com/emanueltimlopez/books-motivation/internal/user"
 	supa "github.com/nedpals/supabase-go"
 )
@@ -64,6 +65,24 @@ func (sr *SupabaseRepository) CreateUser(ctx context.Context, _user user.User) e
 	err := sr.client.DB.From("users").Insert(_user).Execute(&result)
 	if err != nil {
 		fmt.Println(err)
+	}
+	return err
+}
+
+func (sr *SupabaseRepository) UpdateUserPlan(ctx context.Context, plan plan.Plan, id string) error {
+	var result []*user.User
+
+	_user, err := sr.GetUser(ctx, id)
+	if err != nil {
+		fmt.Println("[supabase:UpdateUserPlan:user]", err)
+		return err
+	}
+
+	_user.Plan = plan
+
+	_err := sr.client.DB.From("users").Update(_user).Eq("id", id).Execute(&result)
+	if _err != nil {
+		fmt.Println("[supabase:UpdateUserPlan:update]", _err)
 	}
 	return err
 }

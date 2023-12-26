@@ -2,6 +2,8 @@ package user
 
 import (
 	"context"
+
+	"github.com/emanueltimlopez/books-motivation/internal/plan"
 )
 
 type Service struct {
@@ -21,5 +23,11 @@ func (us *Service) GetUser(ctx context.Context, id string) (*User, error) {
 
 func (us *Service) CreateUser(ctx context.Context, user User) error {
 	err := us.repo.CreateUser(ctx, user)
+	return err
+}
+
+func (us *Service) UpdateUserPlan(ctx context.Context, plan plan.Plan, id string) error {
+
+	err := us.repo.UpdateUserPlan(ctx, plan, id)
 	return err
 }
