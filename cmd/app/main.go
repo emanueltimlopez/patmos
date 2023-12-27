@@ -15,7 +15,7 @@ func main() {
 
 	router := routes.NewRouter()
 
-	err_ := http.ListenAndServe(port, router)
+	err_ := http.ListenAndServe(":"+port, router)
 	if err_ != nil {
 		panic(err_)
 	}
