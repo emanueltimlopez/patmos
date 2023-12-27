@@ -25,7 +25,7 @@ func SignupHandler(w http.ResponseWriter, r *http.Request) {
 
 	ctx := context.Background()
 	supabaseClient := supabase.InitClient()
-	_user, _err := supabaseClient.Auth.SignUp(ctx, supa.UserCredentials{
+	_, _err := supabaseClient.Auth.SignUp(ctx, supa.UserCredentials{
 		Email:    email,
 		Password: password,
 	})
@@ -33,11 +33,20 @@ func SignupHandler(w http.ResponseWriter, r *http.Request) {
 	if _err != nil {
 		fmt.Println("[SignupHandler:signup]", _err)
 	}
+	__user, __err := supabaseClient.Auth.SignIn(ctx, supa.UserCredentials{
+		Email:    email,
+		Password: password,
+	})
+
+	if __err != nil {
+		fmt.Println("[SignupHandler:signin]", __err)
+	}
+
 	dbRepository := supabase.NewSupabaseRepository(supabaseClient)
 
 	userService := user.NewUserService(dbRepository)
-	__err := userService.CreateUser(ctx, user.User{
-		ID:    _user.ID,
+	___err := userService.CreateUser(ctx, user.User{
+		ID:    __user.User.ID,
 		Birth: year,
 		Name:  name,
 		Plan: plan.Plan{
@@ -47,8 +56,8 @@ func SignupHandler(w http.ResponseWriter, r *http.Request) {
 		},
 	})
 
-	if __err != nil {
-		fmt.Println("[SignupHandler:createuser]", __err)
+	if ___err != nil {
+		fmt.Println("[SignupHandler:createuser]", ___err)
 	}
 
 	tmpl := template.Must(template.ParseFiles("./web/templates/components/signup-ok.html"))
