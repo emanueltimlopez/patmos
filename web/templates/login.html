@@ -13,17 +13,21 @@
 </head>
 <body>
   <main id="root">
-    <h2>Ingresar</h2>
+    <nav class="title-add">
+      <h1>Login</h1>
+    </nav>
     <form hx-post="/login-user" class="content">
       <fieldset>
         <label for="email">Email</label>
         <input id="email" name="email" type="text">
       </fieldset>
       <fieldset>
-        <label for="password">Contraseña</label>
-        <input id="password" name="password" type="text">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password">
       </fieldset>
-      <button type="submit">Ingresar</button>
+      <div class="button-container">
+        <button type="submit">Login</button>
+      </div>
     </form>
   </main>
   <script src="https://unpkg.com/htmx.org@1.9.9"></script>
