@@ -3,8 +3,11 @@ package plan
 import (
 	"context"
 	"fmt"
+	"html/template"
 	"net/http"
 	"strconv"
+
+	planUseCases "github.com/emanueltimlopez/books-motivation/internal/plan/use-cases"
 
 	"github.com/emanueltimlopez/books-motivation/internal/plan"
 	"github.com/emanueltimlopez/books-motivation/internal/platform/supabase"
@@ -28,11 +31,26 @@ func UpdatePlanHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.Us
 		fmt.Println(_err)
 	}
 
-	newPlan := plan.Plan{Minutes: minutes, Sessions: sessions}
+	words, __err := strconv.Atoi(r.Form.Get("words"))
+	if __err != nil {
+		fmt.Println(_err)
+	}
+
+	newPlan := plan.Plan{Minutes: minutes, Sessions: sessions, Words: words}
 	userService := user.NewUserService(dbRepository)
 
-	__err := userService.UpdateUserPlan(ctx, newPlan, userSupa.ID)
-	if __err != nil {
-		fmt.Println(__err)
+	user, ___err := userService.UpdateUserPlan(ctx, newPlan, userSupa.ID)
+	if ___err != nil {
+		fmt.Println(___err)
 	}
+
+	booksLeft := planUseCases.BooksLeft(user)
+
+	data := map[string]any{
+		"Plan": user.Plan,
+		"Left": booksLeft,
+	}
+
+	tmpl := template.Must(template.ParseFiles("./web/templates/plan.html"))
+	tmpl.Execute(w, data)
 }

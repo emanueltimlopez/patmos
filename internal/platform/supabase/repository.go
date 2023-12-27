@@ -69,13 +69,13 @@ func (sr *SupabaseRepository) CreateUser(ctx context.Context, _user user.User) e
 	return err
 }
 
-func (sr *SupabaseRepository) UpdateUserPlan(ctx context.Context, plan plan.Plan, id string) error {
+func (sr *SupabaseRepository) UpdateUserPlan(ctx context.Context, plan plan.Plan, id string) (*user.User, error) {
 	var result []*user.User
 
 	_user, err := sr.GetUser(ctx, id)
 	if err != nil {
 		fmt.Println("[supabase:UpdateUserPlan:user]", err)
-		return err
+		return nil, err
 	}
 
 	_user.Plan = plan
@@ -84,7 +84,7 @@ func (sr *SupabaseRepository) UpdateUserPlan(ctx context.Context, plan plan.Plan
 	if _err != nil {
 		fmt.Println("[supabase:UpdateUserPlan:update]", _err)
 	}
-	return err
+	return result[0], err
 }
 
 func (sr *SupabaseRepository) GetUserBooks(ctx context.Context, id string) ([]*bookshelf.UserBooks, error) {

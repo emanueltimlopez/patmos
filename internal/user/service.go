@@ -26,8 +26,8 @@ func (us *Service) CreateUser(ctx context.Context, user User) error {
 	return err
 }
 
-func (us *Service) UpdateUserPlan(ctx context.Context, plan plan.Plan, id string) error {
+func (us *Service) UpdateUserPlan(ctx context.Context, plan plan.Plan, id string) (*User, error) {
 
-	err := us.repo.UpdateUserPlan(ctx, plan, id)
-	return err
+	user, err := us.repo.UpdateUserPlan(ctx, plan, id)
+	return user, err
 }

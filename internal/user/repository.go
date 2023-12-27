@@ -9,5 +9,5 @@ import (
 type Repository interface {
 	GetUser(ctx context.Context, id string) (*User, error)
 	CreateUser(ctx context.Context, user User) error
-	UpdateUserPlan(ctx context.Context, plan plan.Plan, user string) error
+	UpdateUserPlan(ctx context.Context, plan plan.Plan, user string) (*User, error)
 }

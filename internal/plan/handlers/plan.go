@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"net/http"
 
+	planUseCases "github.com/emanueltimlopez/books-motivation/internal/plan/use-cases"
 	"github.com/emanueltimlopez/books-motivation/internal/platform/supabase"
 	"github.com/emanueltimlopez/books-motivation/internal/user"
 	supa "github.com/nedpals/supabase-go"
@@ -22,6 +23,13 @@ func PlanHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 		fmt.Println(err)
 	}
 
+	booksLeft := planUseCases.BooksLeft(user)
+
+	data := map[string]any{
+		"Plan": user.Plan,
+		"Left": booksLeft,
+	}
+
 	tmpl := template.Must(template.ParseFiles("./web/templates/plan.html"))
-	tmpl.Execute(w, user.Plan)
+	tmpl.Execute(w, data)
 }

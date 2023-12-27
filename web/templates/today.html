@@ -1,16 +1,16 @@
 <div class="content content-headless">
   <div class="boxes">
     <div class="box">
-      <span>Books per life</span>
+      <h4>Books per life</h4>
       <span>0</span>
     </div>
     <div class="box">
-      <span>Words per minute</span>
+      <h4>Words per minute</h4>
       <span>0</span>
     </div>
     <div class="box">
-      <span>Selected plan</span>
-      <span></span>
+      <h4>Plan</h4>
+      <span>{{.Plan.Minutes}} minutes a day in {{.Plan.Sessions}} {{ if eq .Plan.Sessions 1}}session{{else}}sessions{{end}}</span>
     </div>
   </div>
 </div>

@@ -52,5 +52,9 @@ func TodayHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 	}
 	tmpl.Execute(w, month)*/
 
-	tmpl.Execute(w, nil)
+	data := map[string]any{
+		"Plan": _user.Plan,
+	}
+
+	tmpl.Execute(w, data)
 }
