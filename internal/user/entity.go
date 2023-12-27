@@ -7,4 +7,5 @@ type User struct {
 	Book  string    `json:"book,omitempty"`
 	Plan  plan.Plan `json:"plan,omitempty"`
 	Birth int       `json:"birth"`
+	Name  string    `json:"name"`
 }

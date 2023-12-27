@@ -4,6 +4,10 @@ html, body {
   font-family: 'Roboto Slab', serif;
 }
 
+p {  
+  font-family: 'Roboto Slab', serif;
+}
+
 body {
   height: 100vh;
   box-sizing: border-box;
@@ -26,7 +30,40 @@ main {
   height: 100%;
 }
 
+@media (min-width: 768px) {
+  .container {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto 0;
+  }
+}
+
 .boxes {
+  display: flex;
+}
+
+.box {
+  text-align: center;
+  padding: .5rem;
+}
+
+.box p {
+  color: #464646;
+}
+
+.box button {
+  background: none;
+  border: none;
+}
+
+.box button p {
+  font-size: 1.1em;
+  font-weight: 100;
+}
+
+
+.box svg {
+  fill: #464646;
 }
 
 .content-headless {
@@ -75,8 +112,10 @@ nav.navbar button {
 
 .indicator {
   position: absolute;
-  bottom: 2rem;
-  left: 2rem;
+  bottom: 5rem;
+  width: 100%;
+  text-align: center;
+  left: 0;
 }
 
 form fieldset {
@@ -160,4 +199,14 @@ ul.habit li.habit--very-good {
   font-size: 1.1em;
   font-weight: 100;
   color: #464646;
+}
+
+.bookshelf {
+  text-align: center;
+  padding-top: 5rem;
+}
+
+.message {
+  text-align: center;
+  width: 100%;
 }

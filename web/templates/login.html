@@ -16,20 +16,26 @@
     <nav class="title-add">
       <h1>Login</h1>
     </nav>
-    <form hx-post="/login-user" class="content">
-      <fieldset>
-        <label for="email">Email</label>
-        <input id="email" name="email" type="text">
-      </fieldset>
-      <fieldset>
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password">
-      </fieldset>
+    <div class="content container">
+      <form hx-post="/login-user" hx-indicator="#indicator">
+        <fieldset>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="text">
+        </fieldset>
+        <fieldset>
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password">
+        </fieldset>
+        <div class="button-container">
+          <button type="submit">Login</button>
+        </div>
+      </form>
       <div class="button-container">
-        <button type="submit">Login</button>
+        <a href="/signup">Create a new account</a>
       </div>
-    </form>
+    </div>
   </main>
+  <div id="indicator" class="indicator htmx-indicator">Loading...</div>
   <script src="https://unpkg.com/htmx.org@1.9.9"></script>
 </body>
 </html>

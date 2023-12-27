@@ -2,33 +2,36 @@
   <h1>Plan</h1>
 </nav>
 <div class="plan content">
-  <form hx-put="/update-plan" hx-target="#root">
-    <span>I would like to dedicate</span>
-    <span class="no-wrap"><select id="minutes" name="minutes">
-      {{ if (eq .Plan.Minutes 15) }}<option value="15" selected>15</option>{{ else }}<option value="15">15</option>{{ end }}
-      {{ if (eq .Plan.Minutes 30) }}<option value="30" selected>30</option>{{ else }}<option value="30">30</option>{{ end }}
-      {{ if (eq .Plan.Minutes 45) }}<option value="45" selected>45</option>{{ else }}<option value="45">45</option>{{ end }}
-      {{ if (eq .Plan.Minutes 60) }}<option value="60" selected>60</option>{{ else }}<option value="60">60</option>{{ end }}
-    </select>
-    minutes </span>
-    <span>reading each day, splitting it into</span>
-    <span class="no-wrap">
-      <select id="sessions" name="sessions">
-        {{ if (eq .Plan.Sessions 1) }}<option value="1" selected>one</option>{{ else }}<option value="1">one</option>{{ end }}
-        {{ if (eq .Plan.Sessions 2) }}<option value="2" selected>two</option>{{ else }}<option value="2">two</option>{{ end }}
-        {{ if (eq .Plan.Sessions 3) }}<option value="3" selected>three</option>{{ else }}<option value="3">three</option>{{ end }}
-        {{ if (eq .Plan.Sessions 4) }}<option value="4" selected>four</option>{{ else }}<option value="4">four</option>{{ end }}
+  <div class="container">
+    <div>With this plan, you'll be able to read <b>{{.Left}} books</b> in the time you have left on this earth.</div>
+    <br/>
+    <form hx-put="/update-plan" hx-target="#root" hx-indicator="#indicator">
+      <span>I would like to dedicate</span>
+      <span class="no-wrap"><select id="minutes" name="minutes">
+        {{ if (eq .Plan.Minutes 15) }}<option value="15" selected>15</option>{{ else }}<option value="15">15</option>{{ end }}
+        {{ if (eq .Plan.Minutes 30) }}<option value="30" selected>30</option>{{ else }}<option value="30">30</option>{{ end }}
+        {{ if (eq .Plan.Minutes 45) }}<option value="45" selected>45</option>{{ else }}<option value="45">45</option>{{ end }}
+        {{ if (eq .Plan.Minutes 60) }}<option value="60" selected>60</option>{{ else }}<option value="60">60</option>{{ end }}
       </select>
-    separate sessions.</span>
-    <br/>
-    <br/>
-    <span>I can read at a rate of</span>
-    <span class="no-wrap"><input id="words" name="words" type="number" value="{{ .Plan.Words }}"/> words</span>
-    <span>per minute.</span>
-    <div class="button-container">
-      <button type="submit">Save</button>
-    </div>
-  </form>
-  <br/>
-  <div>You will be able to read <b>{{.Left}} books</b> in the time you have left on this earth.</div>
+      minutes </span>
+      <span>reading each day, splitting it into</span>
+      <span class="no-wrap">
+        <select id="sessions" name="sessions">
+          {{ if (eq .Plan.Sessions 1) }}<option value="1" selected>one</option>{{ else }}<option value="1">one</option>{{ end }}
+          {{ if (eq .Plan.Sessions 2) }}<option value="2" selected>two</option>{{ else }}<option value="2">two</option>{{ end }}
+          {{ if (eq .Plan.Sessions 3) }}<option value="3" selected>three</option>{{ else }}<option value="3">three</option>{{ end }}
+          {{ if (eq .Plan.Sessions 4) }}<option value="4" selected>four</option>{{ else }}<option value="4">four</option>{{ end }}
+        </select>
+      separate sessions.</span>
+      <br/>
+      <br/>
+      <span>I can read at a rate of</span>
+      <span class="no-wrap"><input id="words" name="words" type="number" value="{{ .Plan.Words }}"/> words</span>
+      <span>per minute.</span>
+      <div class="button-container">
+        <button type="submit">Save</button>
+      </div>
+    </form>
+  </div>
+
 </div>

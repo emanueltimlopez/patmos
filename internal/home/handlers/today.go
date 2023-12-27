@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/emanueltimlopez/books-motivation/internal/platform/supabase"
@@ -36,24 +37,10 @@ func TodayHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 		return
 	}
 
-	/*currentTime := time.Now()
-	currentMonth := currentTime.Month()
-	numberOfDays := daysInMonth(currentTime.Year(), currentTime.Month())
-
-	habitData := make([]int, numberOfDays)
-	for i := 0; i < numberOfDays; i++ {
-		habitData[i] = 0
-	}
-
-	month := map[string]any{
-		"Current": currentMonth.String(),
-		"Days":    numberOfDays,
-		"Habit":   habitData,
-	}
-	tmpl.Execute(w, month)*/
+	firstName := strings.Split(_user.Name, " ")[0]
 
 	data := map[string]any{
-		"Plan": _user.Plan,
+		"Name": firstName,
 	}
 
 	tmpl.Execute(w, data)

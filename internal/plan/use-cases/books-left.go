@@ -7,8 +7,8 @@ import (
 )
 
 func BooksLeft(user *user.User) int {
-	pagesPerBook := 300
-	wordsPerPage := 300
+	pagesPerBook := 350
+	wordsPerPage := 350
 	wordsPerBook := wordsPerPage * pagesPerBook
 
 	wordsPerMinute := user.Plan.Words
@@ -22,7 +22,7 @@ func BooksLeft(user *user.User) int {
 	currentTime := time.Now()
 	currentYear := currentTime.Year()
 	years := currentYear - user.Birth
-	lifeSpectation := 95
+	lifeSpectation := 90
 	yearsLeft := lifeSpectation - years
 
 	booksLeft := booksPerYear * float64(yearsLeft)

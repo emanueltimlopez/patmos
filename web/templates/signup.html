@@ -14,28 +14,36 @@
 <body>
   <main id="root">
     <nav class="title-add">
-      <h1>Registration</h1>
+      <h1>Register</h1>
     </nav>
-
-    <form hx-post="/signup-user" class="content">
-      <fieldset>
-        <label for="email">Email</label>
-        <input id="email" name="email" type="text">
-      </fieldset>
-      <fieldset>
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password">
-      </fieldset>
-      <fieldset>
-        <label for="password">Year of birth</label>
-        <input id="year" name="year" type="number">
-      </fieldset>
+    <div class="content container" >
+      <form hx-post="/signup-user" hx-indicator="#indicator">
+        <fieldset>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="text">
+        </fieldset>
+        <fieldset>
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password">
+        </fieldset>
+        <fieldset>
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text">
+        </fieldset>
+        <fieldset>
+          <label for="year">Year of birth</label>
+          <input id="year" name="year" type="number">
+        </fieldset>
+        <div class="button-container">
+          <button type="submit">Register</button>
+        </div>
+      </form>
       <div class="button-container">
-        <button type="submit">Registration</button>
+        <a href="/login">Login with your account</a>
       </div>
-
-    </form>
+    </div>
   </main>
+  <div id="indicator" class="indicator htmx-indicator">Loading...</div>
 
   <script src="https://unpkg.com/htmx.org@1.9.9"></script>
 </body>
