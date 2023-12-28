@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"strconv"
 
-	embed "github.com/emanueltimlopez/books-motivation"
 	planUseCases "github.com/emanueltimlopez/books-motivation/internal/plan/use-cases"
 
 	"github.com/emanueltimlopez/books-motivation/internal/plan"
@@ -51,5 +50,5 @@ func UpdatePlanHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.Us
 		"Left": booksLeft,
 	}
 
-	embed.Tmpl.ExecuteTemplate(w, "plan.html", data)
+	Tmpl.ExecuteTemplate(w, "plan.html", data)
 }

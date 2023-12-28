@@ -1,12 +1,14 @@
 package book
 
 import (
+	"html/template"
 	"net/http"
 
-	embed "github.com/emanueltimlopez/books-motivation"
 	supa "github.com/nedpals/supabase-go"
 )
 
+var Tmpl *template.Template
+
 func AddBookHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
-	embed.Tmpl.ExecuteTemplate(w, "/add-book.html", nil)
+	Tmpl.ExecuteTemplate(w, "/add-book.html", nil)
 }

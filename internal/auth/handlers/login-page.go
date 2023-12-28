@@ -1,11 +1,12 @@
 package authHandlers
 
 import (
+	"html/template"
 	"net/http"
-
-	embed "github.com/emanueltimlopez/books-motivation"
 )
 
+var Tmpl *template.Template
+
 func LoginPageHandler(w http.ResponseWriter, r *http.Request) {
-	embed.Tmpl.ExecuteTemplate(w, "login.html", nil)
+	Tmpl.ExecuteTemplate(w, "login.html", nil)
 }

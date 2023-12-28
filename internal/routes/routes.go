@@ -1,6 +1,8 @@
 package routes
 
 import (
+	"embed"
+	"html/template"
 	"net/http"
 
 	"github.com/emanueltimlopez/books-motivation/internal/auth"
@@ -11,7 +13,21 @@ import (
 	plan "github.com/emanueltimlopez/books-motivation/internal/plan/handlers"
 )
 
+var Templates embed.FS
+var TemplatesComponents embed.FS
+
 func NewRouter() http.Handler {
+
+	var tmpl = template.Must(template.ParseFS(Templates, "web/templates/*.html"))
+	var tmplComponents = template.Must(template.ParseFS(TemplatesComponents, "web/templates/components/*.html"))
+	home.Tmpl = tmpl
+	authHandlers.Tmpl = tmpl
+	authHandlers.TmplComponents = tmplComponents
+	bookshelf.Tmpl = tmpl
+	plan.Tmpl = tmpl
+	book.Tmpl = tmpl
+	book.TmplComponents = tmplComponents
+
 	mux := http.NewServeMux()
 
 	fileServer := http.FileServer(http.Dir("./web/static/"))

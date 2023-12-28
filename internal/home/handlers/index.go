@@ -1,13 +1,14 @@
 package home
 
 import (
+	"html/template"
 	"net/http"
-
-	embed "github.com/emanueltimlopez/books-motivation"
 
 	supa "github.com/nedpals/supabase-go"
 )
 
+var Tmpl *template.Template
+
 func IndexHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
-	embed.Tmpl.ExecuteTemplate(w, "index.html", nil)
+	Tmpl.ExecuteTemplate(w, "index.html", nil)
 }

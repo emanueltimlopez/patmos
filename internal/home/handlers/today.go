@@ -7,7 +7,6 @@ import (
 	"strings"
 	"time"
 
-	embed "github.com/emanueltimlopez/books-motivation"
 	"github.com/emanueltimlopez/books-motivation/internal/platform/supabase"
 	"github.com/emanueltimlopez/books-motivation/internal/user"
 
@@ -32,7 +31,7 @@ func TodayHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 	}
 
 	if _user == nil {
-		embed.Tmpl.ExecuteTemplate(w, "today.html", nil)
+		Tmpl.ExecuteTemplate(w, "today.html", nil)
 		return
 	}
 
@@ -42,5 +41,5 @@ func TodayHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 		"Name": firstName,
 	}
 
-	embed.Tmpl.ExecuteTemplate(w, "today.html", data)
+	Tmpl.ExecuteTemplate(w, "today.html", data)
 }

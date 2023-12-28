@@ -3,14 +3,16 @@ package bookshelf
 import (
 	"context"
 	"fmt"
+	"html/template"
 	"net/http"
 
-	embed "github.com/emanueltimlopez/books-motivation"
 	"github.com/emanueltimlopez/books-motivation/internal/bookshelf"
 	"github.com/emanueltimlopez/books-motivation/internal/platform/supabase"
 	"github.com/emanueltimlopez/books-motivation/internal/user"
 	supa "github.com/nedpals/supabase-go"
 )
+
+var Tmpl *template.Template
 
 func BooksHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 	ctx := context.Background()
@@ -30,5 +32,5 @@ func BooksHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 		fmt.Println(err)
 	}
 
-	embed.Tmpl.ExecuteTemplate(w, "books.html", books)
+	Tmpl.ExecuteTemplate(w, "books.html", books)
 }

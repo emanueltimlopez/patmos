@@ -3,14 +3,16 @@ package plan
 import (
 	"context"
 	"fmt"
+	"html/template"
 	"net/http"
 
-	embed "github.com/emanueltimlopez/books-motivation"
 	planUseCases "github.com/emanueltimlopez/books-motivation/internal/plan/use-cases"
 	"github.com/emanueltimlopez/books-motivation/internal/platform/supabase"
 	"github.com/emanueltimlopez/books-motivation/internal/user"
 	supa "github.com/nedpals/supabase-go"
 )
+
+var Tmpl *template.Template
 
 func PlanHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 	ctx := context.Background()
@@ -30,5 +32,5 @@ func PlanHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 		"Left": booksLeft,
 	}
 
-	embed.Tmpl.ExecuteTemplate(w, "plan.html", data)
+	Tmpl.ExecuteTemplate(w, "plan.html", data)
 }
