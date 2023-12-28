@@ -3,9 +3,9 @@ package plan
 import (
 	"context"
 	"fmt"
-	"html/template"
 	"net/http"
 
+	embed "github.com/emanueltimlopez/books-motivation"
 	planUseCases "github.com/emanueltimlopez/books-motivation/internal/plan/use-cases"
 	"github.com/emanueltimlopez/books-motivation/internal/platform/supabase"
 	"github.com/emanueltimlopez/books-motivation/internal/user"
@@ -30,6 +30,5 @@ func PlanHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 		"Left": booksLeft,
 	}
 
-	tmpl := template.Must(template.ParseFiles("./web/templates/plan.html"))
-	tmpl.Execute(w, data)
+	embed.Tmpl.ExecuteTemplate(w, "plan.html", data)
 }

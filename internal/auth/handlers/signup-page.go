@@ -1,11 +1,11 @@
 package authHandlers
 
 import (
-	"html/template"
 	"net/http"
+
+	embed "github.com/emanueltimlopez/books-motivation"
 )
 
 func SignupPageHandler(w http.ResponseWriter, r *http.Request) {
-	tmpl := template.Must(template.ParseFiles("./web/templates/signup.html"))
-	tmpl.Execute(w, nil)
+	embed.Tmpl.ExecuteTemplate(w, "signup.html", nil)
 }

@@ -7,7 +7,6 @@ import (
 	authHandlers "github.com/emanueltimlopez/books-motivation/internal/auth/handlers"
 	book "github.com/emanueltimlopez/books-motivation/internal/book/handlers"
 	bookshelf "github.com/emanueltimlopez/books-motivation/internal/bookshelf/handlers"
-	goals "github.com/emanueltimlopez/books-motivation/internal/goals/handlers"
 	home "github.com/emanueltimlopez/books-motivation/internal/home/handlers"
 	plan "github.com/emanueltimlopez/books-motivation/internal/plan/handlers"
 )
@@ -29,9 +28,6 @@ func NewRouter() http.Handler {
 	mux.Handle("/add-book", auth.NewAuth(book.AddBookHandler))
 	mux.Handle("/create-book", auth.NewAuth(book.CreateBookHandler))
 	mux.Handle("/search-book", auth.NewAuth(book.SearchBookHandler))
-	mux.Handle("/goals", auth.NewAuth(goals.GoalsHandler))
-	mux.Handle("/add-goal", auth.NewAuth(goals.AddGoalHandler))
-	mux.Handle("/create-goal", auth.NewAuth(goals.CreateGoalHandler))
 	mux.Handle("/plan", auth.NewAuth(plan.PlanHandler))
 	mux.Handle("/update-plan", auth.NewAuth(plan.UpdatePlanHandler))
 

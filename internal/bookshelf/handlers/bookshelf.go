@@ -3,9 +3,9 @@ package bookshelf
 import (
 	"context"
 	"fmt"
-	"html/template"
 	"net/http"
 
+	embed "github.com/emanueltimlopez/books-motivation"
 	"github.com/emanueltimlopez/books-motivation/internal/bookshelf"
 	"github.com/emanueltimlopez/books-motivation/internal/platform/supabase"
 	"github.com/emanueltimlopez/books-motivation/internal/user"
@@ -30,6 +30,5 @@ func BooksHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 		fmt.Println(err)
 	}
 
-	tmpl := template.Must(template.ParseFiles("./web/templates/books.html"))
-	tmpl.Execute(w, books)
+	embed.Tmpl.ExecuteTemplate(w, "books.html", books)
 }

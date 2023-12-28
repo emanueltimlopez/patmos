@@ -3,10 +3,10 @@ package authHandlers
 import (
 	"context"
 	"fmt"
-	"html/template"
 	"net/http"
 	"strconv"
 
+	embed "github.com/emanueltimlopez/books-motivation"
 	"github.com/emanueltimlopez/books-motivation/internal/plan"
 	"github.com/emanueltimlopez/books-motivation/internal/platform/supabase"
 	"github.com/emanueltimlopez/books-motivation/internal/user"
@@ -60,6 +60,5 @@ func SignupHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("[SignupHandler:createuser]", ___err)
 	}
 
-	tmpl := template.Must(template.ParseFiles("./web/templates/components/signup-ok.html"))
-	tmpl.Execute(w, nil)
+	embed.TmplComponents.ExecuteTemplate(w, "signup-ok.html", nil)
 }

@@ -3,11 +3,11 @@ package book
 import (
 	"encoding/json"
 	"fmt"
-	"html/template"
 	"io"
 	"net/http"
 	"net/url"
 
+	embed "github.com/emanueltimlopez/books-motivation"
 	"github.com/emanueltimlopez/books-motivation/internal/book"
 	supa "github.com/nedpals/supabase-go"
 )
@@ -34,6 +34,5 @@ func SearchBookHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.Us
 		return
 	}
 
-	tmpl := template.Must(template.ParseFiles("./web/templates/components/search-books.html"))
-	tmpl.Execute(w, books.Docs)
+	embed.TmplComponents.ExecuteTemplate(w, "/search-books.html", books.Docs)
 }

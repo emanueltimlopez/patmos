@@ -3,11 +3,11 @@ package home
 import (
 	"context"
 	"fmt"
-	"html/template"
 	"net/http"
 	"strings"
 	"time"
 
+	embed "github.com/emanueltimlopez/books-motivation"
 	"github.com/emanueltimlopez/books-motivation/internal/platform/supabase"
 	"github.com/emanueltimlopez/books-motivation/internal/user"
 
@@ -19,7 +19,6 @@ func daysInMonth(year int, month time.Month) int {
 }
 
 func TodayHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
-	tmpl := template.Must(template.ParseFiles("./web/templates/today.html"))
 	ctx := context.Background()
 	dbClient := supabase.InitClient()
 
@@ -33,7 +32,7 @@ func TodayHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 	}
 
 	if _user == nil {
-		tmpl.Execute(w, nil)
+		embed.Tmpl.ExecuteTemplate(w, "today.html", nil)
 		return
 	}
 
@@ -43,5 +42,5 @@ func TodayHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 		"Name": firstName,
 	}
 
-	tmpl.Execute(w, data)
+	embed.Tmpl.ExecuteTemplate(w, "today.html", data)
 }

@@ -3,10 +3,10 @@ package plan
 import (
 	"context"
 	"fmt"
-	"html/template"
 	"net/http"
 	"strconv"
 
+	embed "github.com/emanueltimlopez/books-motivation"
 	planUseCases "github.com/emanueltimlopez/books-motivation/internal/plan/use-cases"
 
 	"github.com/emanueltimlopez/books-motivation/internal/plan"
@@ -51,6 +51,5 @@ func UpdatePlanHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.Us
 		"Left": booksLeft,
 	}
 
-	tmpl := template.Must(template.ParseFiles("./web/templates/plan.html"))
-	tmpl.Execute(w, data)
+	embed.Tmpl.ExecuteTemplate(w, "plan.html", data)
 }
