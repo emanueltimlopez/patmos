@@ -3,6 +3,7 @@ package routes
 import (
 	"embed"
 	"html/template"
+	"io/fs"
 	"net/http"
 
 	"github.com/emanueltimlopez/books-motivation/internal/auth"
@@ -15,6 +16,7 @@ import (
 
 var Templates embed.FS
 var TemplatesComponents embed.FS
+var StaticFiles embed.FS
 
 func NewRouter() http.Handler {
 
@@ -30,8 +32,12 @@ func NewRouter() http.Handler {
 
 	mux := http.NewServeMux()
 
-	fileServer := http.FileServer(http.Dir("./web/static/"))
-	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
+	sub, err := fs.Sub(StaticFiles, "web")
+	if err != nil {
+		panic(err)
+	}
+	fileServer := http.FileServer(http.FS(sub))
+	mux.Handle("/static/", fileServer)
 
 	mux.Handle("/", auth.NewAuth(home.IndexHandler))
 	mux.HandleFunc("/login", authHandlers.LoginPageHandler)

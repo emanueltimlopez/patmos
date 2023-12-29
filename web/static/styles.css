@@ -9,7 +9,7 @@ p {
 }
 
 body {
-  height: 100vh;
+  height: 100dvh;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -193,12 +193,16 @@ ul.habit li.habit--very-good {
 
 .button-container button {
   background: none;
-  border: 1px #b4b4b4 solid;
+  border: 2px #418fed solid;
   padding: 5px 20px;
   border-radius: 5px;
   font-size: 1.1em;
-  font-weight: 100;
-  color: #464646;
+  color: #418fed;
+}
+
+a {
+  color: #418fed;
+  text-decoration: none;
 }
 
 .bookshelf {

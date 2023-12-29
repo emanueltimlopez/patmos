@@ -1,7 +1,7 @@
 package supabase
 
 import (
-	"log"
+	"fmt"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -11,7 +11,7 @@ import (
 func InitClient() *supa.Client {
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("failed to load env", err)
+		fmt.Println("failed to load env", err)
 	}
 
 	supabaseUrl := os.Getenv("SUPABASE_URL")
