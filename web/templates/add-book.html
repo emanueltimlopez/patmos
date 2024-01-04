@@ -6,20 +6,12 @@
 </nav>
 <div class="content">
   <form hx-post="/search-book" hx-target="#books" hx-indicator="#indicator">
-    <input id="search" name="search" placeholder="Search by title or author" type="text">
-    <button type="submit">Search</button>
-  </form>
-  <ul id="books" class="list-books"></ul>
-  <form id="form" hx-post="/create-book">
+    <h3>Search a book</h3>
     <fieldset>
-      <label for="title">Title</label>
-      <input id="title" name="title" type="text">
+      <input id="search" name="search" placeholder="Search by title or author" type="text">
+      <button type="submit">Search</button>
     </fieldset>
-    <fieldset>
-      <label for="author">Author</label>
-      <input id="author" name="author" type="text">
-    </fieldset>
-    <button type="submit">Save</button>
   </form>
+  <div id="books"></div>
 </div>
 

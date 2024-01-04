@@ -10,5 +10,5 @@ import (
 var Tmpl *template.Template
 
 func AddBookHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
-	Tmpl.ExecuteTemplate(w, "/add-book.html", nil)
+	Tmpl.ExecuteTemplate(w, "add-book.html", nil)
 }

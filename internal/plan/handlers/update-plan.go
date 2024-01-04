@@ -32,7 +32,7 @@ func UpdatePlanHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.Us
 
 	words, __err := strconv.Atoi(r.Form.Get("words"))
 	if __err != nil {
-		fmt.Println(_err)
+		fmt.Println(__err)
 	}
 
 	newPlan := plan.Plan{Minutes: minutes, Sessions: sessions, Words: words}

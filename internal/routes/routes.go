@@ -48,6 +48,7 @@ func NewRouter() http.Handler {
 	mux.Handle("/bookshelf", auth.NewAuth(bookshelf.BooksHandler))
 	mux.Handle("/today", auth.NewAuth(home.TodayHandler))
 	mux.Handle("/add-book", auth.NewAuth(book.AddBookHandler))
+	mux.Handle("/set-book", auth.NewAuth(book.SetBookHandler))
 	mux.Handle("/create-book", auth.NewAuth(book.CreateBookHandler))
 	mux.Handle("/search-book", auth.NewAuth(book.SearchBookHandler))
 	mux.Handle("/plan", auth.NewAuth(plan.PlanHandler))

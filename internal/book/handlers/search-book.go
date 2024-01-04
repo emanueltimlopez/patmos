@@ -36,5 +36,7 @@ func SearchBookHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.Us
 		return
 	}
 
-	TmplComponents.ExecuteTemplate(w, "/search-books.html", books.Docs)
+	fmt.Println(books.Docs[0].Pages)
+
+	TmplComponents.ExecuteTemplate(w, "search-books.html", books.Docs)
 }

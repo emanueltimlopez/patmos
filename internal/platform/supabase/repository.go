@@ -38,11 +38,11 @@ func (sr *SupabaseRepository) CreateBook(ctx context.Context, _book book.Book, u
 		return err
 	}
 
-	var resultRelation *bookshelf.UserBooks
-	newRelation := bookshelf.UserBooks{UserID: userID, BookID: result[0].ID}
+	var resultRelation *bookshelf.UserBooksGet
+	newRelation := bookshelf.UserBooksSave{UserID: userID, BookID: result[0].ID}
 	errRelation := sr.client.DB.From("users_books").Insert(newRelation).Execute(&resultRelation)
-	if err != nil {
-		fmt.Println(err)
+	if errRelation != nil {
+		fmt.Println(errRelation)
 
 		return errRelation
 	}
@@ -86,8 +86,8 @@ func (sr *SupabaseRepository) UpdateUserPlan(ctx context.Context, plan plan.Plan
 	return result[0], err
 }
 
-func (sr *SupabaseRepository) GetUserBooks(ctx context.Context, id string) ([]*bookshelf.UserBooks, error) {
-	var result []*bookshelf.UserBooks
+func (sr *SupabaseRepository) GetUserBooks(ctx context.Context, id string) ([]*bookshelf.UserBooksGet, error) {
+	var result []*bookshelf.UserBooksGet
 	err := sr.client.DB.From("users_books").Select("*, books(*)").Eq("user_id", id).Execute(&result)
 	if err != nil {
 		fmt.Println(err)

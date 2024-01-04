@@ -6,10 +6,11 @@ type Book struct {
 	Pages  int    `json:"pages"`
 	Words  int    `json:"words"`
 	Author string `json:"author"`
+	Image  string `json:"image"`
 }
 
 type BookFromAPI struct {
-	Cover       int      `json:"cover_i"`
+	Cover       string   `json:"cover_edition_key"`
 	FullText    bool     `json:"has_fulltext"`
 	Edition     int      `json:"edition_count"`
 	Title       string   `json:"title"`
@@ -19,6 +20,9 @@ type BookFromAPI struct {
 	Ia          []string `json:"ia"`
 	AuthorKey   []string `json:"author_key"`
 	PublicScan  bool     `json:"public_scan_b"`
+	Isbn        []string `json:"isbn"`
+	Pages       int      `json:"number_of_pages_median"`
+	//number_of_pages_median
 }
 
 type BooksFromAPI struct {

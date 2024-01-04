@@ -7,6 +7,6 @@ import (
 )
 
 type Repository interface {
-	GetUserBooks(ctx context.Context, id string) ([]*UserBooks, error)
+	GetUserBooks(ctx context.Context, id string) ([]*UserBooksGet, error)
 	CreateBook(ctx context.Context, book book.Book, id string) error
 }
