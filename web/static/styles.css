@@ -125,6 +125,12 @@ form fieldset {
   border: none;
   display: flex;
   flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+form label {
+  margin-top: 1rem;
 }
 
 form input {
@@ -155,15 +161,21 @@ ul.habit li.habit--very-good {
 }
 
 .list-books {
-  max-height: 250px;
+  max-height: 300px;
   overflow: auto;
   list-style: none;
   padding: 0;
 }
 
+.list-books li {
+  padding: 1rem 0;
+}
+
 .list-books li button {
   border: 0;
   background: none;
+  font-size: 1.1em;
+  text-align: left;
 }
 
 .plan {
@@ -276,4 +288,13 @@ a {
 .scroll {
   overflow-y: auto;
   max-height: 75vh;
+}
+
+.book-form img {
+  width: 100%;
+}
+
+.columns-fields {
+  display: flex;
+  justify-content: space-between;
 }

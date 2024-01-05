@@ -1,18 +1,20 @@
-<div class="scroll">
-  <form id="form" hx-post="/create-book" hx-target="#books" hx-indicator="#indicator">
-    <h3>Add a new book</h3>
-    <fieldset>
-      <label for="title">Title</label>
-      <input id="title" name="title" type="text" value="{{.Title}}">
-    </fieldset>
+<form id="form" class="book-form" hx-post="/create-book" hx-target="#books" hx-indicator="#indicator">
+  <h3>Add a new book</h3>
+  <fieldset>
+    <label for="title">Title</label>
+    <input id="title" name="title" type="text" value="{{.Title}}">
+  </fieldset>
+  <div class="columns-fields">
     <fieldset>
       <label for="author">Author</label>
       <input id="author" name="author" type="text" value="{{.Author}}">
     </fieldset>
     <fieldset>
       <label for="isbn">ISBN</label>
-      <input id="isbn" name="isbn" type="number" value="{{.Isbn}}">
+      <input id="isbn" name="isbn" type="text" value="{{.Isbn}}">
     </fieldset>
+  </div>
+  <div class="columns-fields">
     <fieldset>
       <label for="pages">Pages</label>
       <input id="pages" name="pages" type="number" value="{{.Pages}}">
@@ -22,8 +24,8 @@
       <input style="display: none;" id="image" name="image" type="text" value="{{.Image}}">
       <img src="https://covers.openlibrary.org/b/olid/{{.Image}}-M.jpg"/>
     </fieldset>{{ end }}
-    <div class="button-container">
-      <button type="submit">Save</button>
-    </div>
-  </form>
-</div>
+  </div>
+  <div class="button-container">
+    <button type="submit">Save</button>
+  </div>
+</form>
