@@ -17,6 +17,10 @@ func daysInMonth(year int, month time.Month) int {
 	return time.Date(year, month+1, 0, 0, 0, 0, 0, time.UTC).Day()
 }
 
+type TodayView struct {
+	Name string
+}
+
 func TodayHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 	ctx := context.Background()
 	dbClient := supabase.InitClient()
@@ -37,9 +41,7 @@ func TodayHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 
 	firstName := strings.Split(_user.Name, " ")[0]
 
-	data := map[string]any{
-		"Name": firstName,
-	}
-
-	Tmpl.ExecuteTemplate(w, "today.html", data)
+	Tmpl.ExecuteTemplate(w, "today.html", TodayView{
+		Name: firstName,
+	})
 }

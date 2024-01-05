@@ -1,40 +1,27 @@
 package book
 
 import (
-	"encoding/json"
 	"fmt"
 	"html/template"
-	"io"
 	"net/http"
-	"net/url"
 
-	"github.com/emanueltimlopez/books-motivation/internal/book"
+	book_usecases "github.com/emanueltimlopez/books-motivation/internal/book/use-cases"
 	supa "github.com/nedpals/supabase-go"
 )
 
 var TmplComponents *template.Template
 
+type SearchBookView struct {
+	Books []book_usecases.BookFromAPI
+}
+
 func SearchBookHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
-	r.ParseForm()
-	search := r.Form.Get("search")
+	params := book_usecases.GetParamsSearchBook(r)
 
-	response, err := http.Get(fmt.Sprintf("https://openlibrary.org/search.json?q=%s", url.QueryEscape(search)))
-
-	if err != nil {
-		fmt.Print(err.Error())
-	}
-
-	booksData, err := io.ReadAll(response.Body)
+	books, err := book_usecases.SearchBook(params.Text)
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	var books book.BooksFromAPI
-	_err := json.Unmarshal(booksData, &books)
-	if err != nil {
-		fmt.Println("Error:", _err)
-		return
-	}
-
-	TmplComponents.ExecuteTemplate(w, "search-books.html", books.Docs)
+	TmplComponents.ExecuteTemplate(w, "search-books.html", SearchBookView{Books: books})
 }

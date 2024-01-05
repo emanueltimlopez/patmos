@@ -25,6 +25,14 @@
       <img src="https://covers.openlibrary.org/b/olid/{{.Image}}-M.jpg"/>
     </fieldset>{{ end }}
   </div>
+  <fieldset>
+    <label for="folder">Folder</label>
+    <select id="folder" name="folder">
+      <option value="triage">Triage</option>
+      <option value="reading">Reading</option>
+      <option value="finished">Finished</option>
+    </select>
+  </fieldset>
   <div class="button-container">
     <button type="submit">Save</button>
   </div>

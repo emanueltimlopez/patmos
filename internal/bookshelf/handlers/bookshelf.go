@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"net/http"
 
+	"github.com/emanueltimlopez/books-motivation/internal/book"
 	"github.com/emanueltimlopez/books-motivation/internal/bookshelf"
 	"github.com/emanueltimlopez/books-motivation/internal/platform/supabase"
 	"github.com/emanueltimlopez/books-motivation/internal/user"
@@ -13,6 +14,10 @@ import (
 )
 
 var Tmpl *template.Template
+
+type BookshelfFromView struct {
+	Books []book.Book
+}
 
 func BooksHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 	ctx := context.Background()
@@ -32,5 +37,5 @@ func BooksHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 		fmt.Println(err)
 	}
 
-	Tmpl.ExecuteTemplate(w, "books.html", books)
+	Tmpl.ExecuteTemplate(w, "books.html", BookshelfFromView{Books: books})
 }

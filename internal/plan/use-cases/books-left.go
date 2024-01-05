@@ -1,4 +1,4 @@
-package plan
+package plan_usecases
 
 import (
 	"time"

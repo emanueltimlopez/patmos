@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"net/http"
 
+	"github.com/emanueltimlopez/books-motivation/internal/plan"
 	planUseCases "github.com/emanueltimlopez/books-motivation/internal/plan/use-cases"
 	"github.com/emanueltimlopez/books-motivation/internal/platform/supabase"
 	"github.com/emanueltimlopez/books-motivation/internal/user"
@@ -13,6 +14,11 @@ import (
 )
 
 var Tmpl *template.Template
+
+type PlanView struct {
+	Plan plan.Plan
+	Left int
+}
 
 func PlanHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 	ctx := context.Background()
@@ -27,10 +33,8 @@ func PlanHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 
 	booksLeft := planUseCases.BooksLeft(user)
 
-	data := map[string]any{
-		"Plan": user.Plan,
-		"Left": booksLeft,
-	}
-
-	Tmpl.ExecuteTemplate(w, "plan.html", data)
+	Tmpl.ExecuteTemplate(w, "plan.html", PlanView{
+		Plan: user.Plan,
+		Left: booksLeft,
+	})
 }

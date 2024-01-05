@@ -7,10 +7,10 @@
 <div class="bookshelf content">
   <div class="scroll">
     <ul>
-      {{range .}}
+      {{range .Books}}
         <li>
-          <img src="https://covers.openlibrary.org/b/olid/{{.Book.Image}}-M.jpg"/>
-          <span>{{ .Book.Title }}</span>
+          <img src="https://covers.openlibrary.org/b/olid/{{.Image}}-M.jpg"/>
+          <span>{{ .Title }}</span>
         </li>
       {{ end }}
     </ul>

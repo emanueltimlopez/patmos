@@ -2,6 +2,7 @@ package user
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/emanueltimlopez/books-motivation/internal/plan"
 )
@@ -27,7 +28,13 @@ func (us *Service) CreateUser(ctx context.Context, user User) error {
 }
 
 func (us *Service) UpdateUserPlan(ctx context.Context, plan plan.Plan, id string) (*User, error) {
+	_user, err := us.repo.GetUser(ctx, id)
+	if err != nil {
+		fmt.Println("[supabase:UpdateUserPlan:user]", err)
+		return nil, err
+	}
+	_user.Plan = plan
 
-	user, err := us.repo.UpdateUserPlan(ctx, plan, id)
-	return user, err
+	user, _err := us.repo.UpdateUserPlan(ctx, _user)
+	return user, _err
 }

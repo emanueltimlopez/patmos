@@ -16,12 +16,13 @@ func NewBookShelfService(bsr Repository) *Service {
 	}
 }
 
-func (bss *Service) GetBookShelf(ctx context.Context, id string) ([]*UserBooksGet, error) {
+func (bss *Service) GetBookShelf(ctx context.Context, id string) ([]book.Book, error) {
 	bs, err := bss.repo.GetUserBooks(ctx, id)
-	return bs, err
-}
 
-func (bss *Service) CreateBook(ctx context.Context, book book.Book, id string) error {
-	err := bss.repo.CreateBook(ctx, book, id)
-	return err
+	newBs := []book.Book{}
+	for _, value := range bs {
+		newBs = append(newBs, value.Book)
+	}
+
+	return newBs, err
 }

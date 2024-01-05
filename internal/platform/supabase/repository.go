@@ -6,7 +6,6 @@ import (
 
 	"github.com/emanueltimlopez/books-motivation/internal/book"
 	"github.com/emanueltimlopez/books-motivation/internal/bookshelf"
-	"github.com/emanueltimlopez/books-motivation/internal/plan"
 	"github.com/emanueltimlopez/books-motivation/internal/user"
 	supa "github.com/nedpals/supabase-go"
 )
@@ -30,20 +29,21 @@ func (sr *SupabaseRepository) GetBookByID(ctx context.Context, id string) (*book
 	return result, err
 }
 
-func (sr *SupabaseRepository) CreateBook(ctx context.Context, _book book.Book, userID string) error {
+func (sr *SupabaseRepository) CreateBook(ctx context.Context, _book book.Book, userID string) (*book.Book, error) {
 	var result []*book.Book
 	err := sr.client.DB.From("books").Insert(_book).Execute(&result)
 	if err != nil {
 		fmt.Println(err)
-		return err
+		return nil, err
 	}
+	return result[0], nil
+}
 
+func (sr *SupabaseRepository) AsociateBook(ctx context.Context, relation book.UserBooksRelation) error {
 	var resultRelation *bookshelf.UserBooksGet
-	newRelation := bookshelf.UserBooksSave{UserID: userID, BookID: result[0].ID}
-	errRelation := sr.client.DB.From("users_books").Insert(newRelation).Execute(&resultRelation)
+	errRelation := sr.client.DB.From("users_books").Insert(relation).Execute(&resultRelation)
 	if errRelation != nil {
 		fmt.Println(errRelation)
-
 		return errRelation
 	}
 
@@ -68,34 +68,21 @@ func (sr *SupabaseRepository) CreateUser(ctx context.Context, _user user.User) e
 	return err
 }
 
-func (sr *SupabaseRepository) UpdateUserPlan(ctx context.Context, plan plan.Plan, id string) (*user.User, error) {
+func (sr *SupabaseRepository) UpdateUserPlan(ctx context.Context, _user *user.User) (*user.User, error) {
 	var result []*user.User
-
-	_user, err := sr.GetUser(ctx, id)
+	err := sr.client.DB.From("users").Update(_user).Eq("id", _user.ID).Execute(&result)
 	if err != nil {
-		fmt.Println("[supabase:UpdateUserPlan:user]", err)
-		return nil, err
-	}
-
-	_user.Plan = plan
-
-	_err := sr.client.DB.From("users").Update(_user).Eq("id", id).Execute(&result)
-	if _err != nil {
-		fmt.Println("[supabase:UpdateUserPlan:update]", _err)
+		fmt.Println("[supabase:UpdateUserPlan:update]", err)
 	}
 	return result[0], err
 }
 
-func (sr *SupabaseRepository) GetUserBooks(ctx context.Context, id string) ([]*bookshelf.UserBooksGet, error) {
-	var result []*bookshelf.UserBooksGet
+func (sr *SupabaseRepository) GetUserBooks(ctx context.Context, id string) ([]bookshelf.UserBooksGet, error) {
+	var result []bookshelf.UserBooksGet
 	err := sr.client.DB.From("users_books").Select("*, books(*)").Eq("user_id", id).Execute(&result)
 	if err != nil {
 		fmt.Println(err)
 	}
 
 	return result, err
-}
-
-func (sr *SupabaseRepository) AddBook(ctx context.Context, id string, book book.Book) error {
-	return nil
 }

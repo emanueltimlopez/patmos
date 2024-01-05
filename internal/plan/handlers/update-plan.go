@@ -4,11 +4,9 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"strconv"
-
-	planUseCases "github.com/emanueltimlopez/books-motivation/internal/plan/use-cases"
 
 	"github.com/emanueltimlopez/books-motivation/internal/plan"
+	plan_usecases "github.com/emanueltimlopez/books-motivation/internal/plan/use-cases"
 	"github.com/emanueltimlopez/books-motivation/internal/platform/supabase"
 	"github.com/emanueltimlopez/books-motivation/internal/user"
 	supa "github.com/nedpals/supabase-go"
@@ -19,36 +17,20 @@ func UpdatePlanHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.Us
 	dbClient := supabase.InitClient()
 	dbRepository := supabase.NewSupabaseRepository(dbClient)
 
-	r.ParseForm()
-	minutes, err := strconv.Atoi(r.Form.Get("minutes"))
-	if err != nil {
-		fmt.Println(err)
-	}
+	params := plan_usecases.GetParamsSearchBook(r)
 
-	sessions, _err := strconv.Atoi(r.Form.Get("sessions"))
-	if _err != nil {
-		fmt.Println(_err)
-	}
-
-	words, __err := strconv.Atoi(r.Form.Get("words"))
-	if __err != nil {
-		fmt.Println(__err)
-	}
-
-	newPlan := plan.Plan{Minutes: minutes, Sessions: sessions, Words: words}
+	newPlan := plan.Plan{Minutes: params.Minutes, Sessions: params.Sessions, Words: params.Words}
 	userService := user.NewUserService(dbRepository)
 
-	user, ___err := userService.UpdateUserPlan(ctx, newPlan, userSupa.ID)
-	if ___err != nil {
-		fmt.Println(___err)
+	user, err := userService.UpdateUserPlan(ctx, newPlan, userSupa.ID)
+	if err != nil {
+		fmt.Println("[UpdatePlanHandler]", err)
 	}
 
-	booksLeft := planUseCases.BooksLeft(user)
+	booksLeft := plan_usecases.BooksLeft(user)
 
-	data := map[string]any{
-		"Plan": user.Plan,
-		"Left": booksLeft,
-	}
-
-	Tmpl.ExecuteTemplate(w, "plan.html", data)
+	Tmpl.ExecuteTemplate(w, "plan.html", PlanView{
+		Plan: user.Plan,
+		Left: booksLeft,
+	})
 }
