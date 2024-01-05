@@ -1,10 +1,10 @@
 <ul class="list-books">
   {{range .}}
   <li>
-    <button hx-post="/set-book?title={{.Title}}&image={{.Cover}}&author={{.Author}}&pages={{.Pages}}" hx-target="#books" hx-indicator="#indicator">{{ .Title }} - {{ .Author }}</button>
+    <button hx-post="/set-book?title={{.Title}}&cover={{.Cover}}&isbn={{.Isbn}}&author={{.Author}}&pages={{.Pages}}" hx-target="#books" hx-indicator="#indicator">{{ .Title }} - {{ .Author }}</button>
   </li>
   {{ end }}
 </ul>
 <div class="button-container">
-  <button hx-get="/book-form" hx-target="#root" hx-indicator="#indicator">I can`t find the book</button>
+  <button hx-post="/set-book" hx-target="#books" hx-indicator="#indicator">I can`t find the book</button>
 </div>

@@ -7,9 +7,11 @@
 <div class="content">
   <form hx-post="/search-book" hx-target="#books" hx-indicator="#indicator">
     <h3>Search a book</h3>
-    <fieldset>
+    <fieldset class="search-field">
       <input id="search" name="search" placeholder="Search by title or author" type="text">
-      <button type="submit">Search</button>
+      <div class="button-container">
+        <button type="submit">Search</button>
+      </div>
     </fieldset>
   </form>
   <div id="books"></div>

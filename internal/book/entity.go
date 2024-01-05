@@ -7,6 +7,7 @@ type Book struct {
 	Words  int    `json:"words"`
 	Author string `json:"author"`
 	Image  string `json:"image"`
+	Isbn   string `json:"isbn"`
 }
 
 type BookFromAPI struct {
@@ -22,7 +23,6 @@ type BookFromAPI struct {
 	PublicScan  bool     `json:"public_scan_b"`
 	Isbn        []string `json:"isbn"`
 	Pages       int      `json:"number_of_pages_median"`
-	//number_of_pages_median
 }
 
 type BooksFromAPI struct {

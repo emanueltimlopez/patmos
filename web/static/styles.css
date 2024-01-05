@@ -11,16 +11,18 @@ p {
 body {
   height: 100dvh;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   background-color: #000;
+  display: grid; 
+  grid-auto-columns: 1fr; 
+  grid-template-rows: 1fr min-content; 
+  gap: 0px 0px; 
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  flex: 2;
+  display: grid; 
+  grid-auto-columns: 1fr; 
+  grid-template-rows: min-content 1fr; 
+  gap: 0px 0px; 
 }
 
 .content {
@@ -28,6 +30,7 @@ main {
   border-radius: .5em;
   padding: 20px;
   height: 100%;
+  box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
@@ -154,6 +157,13 @@ ul.habit li.habit--very-good {
 .list-books {
   max-height: 250px;
   overflow: auto;
+  list-style: none;
+  padding: 0;
+}
+
+.list-books li button {
+  border: 0;
+  background: none;
 }
 
 .plan {
@@ -207,10 +217,63 @@ a {
 
 .bookshelf {
   text-align: center;
-  padding-top: 5rem;
+  padding-top: 2rem;
+}
+
+.bookshelf ul {
+  margin: 0;
+  padding: 0;
+  column-count: 2;
+  column-gap: 10px;
+}
+
+@media (min-width: 768px) {
+  .bookshelf ul {
+    column-count: 4;
+  }
+}
+
+@media (min-width: 1024px) {
+  .bookshelf ul {
+    column-count: 6;
+  }
+}
+
+.bookshelf li {
+  padding-top: 1rem;
+  list-style: none;
+}
+
+.bookshelf li img {
+  width: 100%;
 }
 
 .message {
   text-align: center;
   width: 100%;
+}
+
+.search-field {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.search-field input {
+  width: 100%;
+}
+
+.search-field .button-container {
+  width: auto;
+}
+
+.greetings {
+  background: #fff;
+  padding: 2rem;
+}
+
+.scroll {
+  overflow-y: auto;
+  max-height: 75vh;
 }
