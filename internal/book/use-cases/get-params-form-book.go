@@ -19,11 +19,12 @@ func GetParamsFormBook(r *http.Request) ParamsFormBook {
 	title := r.Form.Get("title")
 	author := r.Form.Get("author")
 	isbn := r.Form.Get("isbn")
-	pages, _err := strconv.Atoi(r.Form.Get("pages"))
-	if _err != nil {
-		fmt.Println("[GetParamsFormBook:pages]", _err)
-	}
 	image := r.Form.Get("cover")
+	pages, err := strconv.Atoi(r.Form.Get("pages"))
+	if err != nil {
+		fmt.Println("[GetParamsFormBook:pages]", err)
+		pages = 0
+	}
 
 	return ParamsFormBook{
 		Title:  title,

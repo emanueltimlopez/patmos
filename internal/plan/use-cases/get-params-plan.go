@@ -12,21 +12,24 @@ type PlanParams struct {
 	Words    int
 }
 
-func GetParamsSearchBook(r *http.Request) PlanParams {
+func GetParamsPlan(r *http.Request) PlanParams {
 	r.ParseForm()
 	minutes, err := strconv.Atoi(r.Form.Get("minutes"))
 	if err != nil {
-		fmt.Println("[GetParamsSearchBook:minutes]", err)
+		fmt.Println("[GetParamsPlan:minutes]", err)
+		minutes = 0
 	}
 
 	sessions, _err := strconv.Atoi(r.Form.Get("sessions"))
 	if _err != nil {
-		fmt.Println("[GetParamsSearchBook:sessions]", _err)
+		fmt.Println("[GetParamsPlan:sessions]", _err)
+		sessions = 0
 	}
 
 	words, __err := strconv.Atoi(r.Form.Get("words"))
 	if __err != nil {
-		fmt.Println("[GetParamsSearchBook:words]", __err)
+		fmt.Println("[GetParamsPlan:words]", __err)
+		words = 0
 	}
 
 	return PlanParams{

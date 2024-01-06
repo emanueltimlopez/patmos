@@ -17,7 +17,7 @@ func UpdatePlanHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.Us
 	dbClient := supabase.InitClient()
 	dbRepository := supabase.NewSupabaseRepository(dbClient)
 
-	params := plan_usecases.GetParamsSearchBook(r)
+	params := plan_usecases.GetParamsPlan(r)
 
 	newPlan := plan.Plan{Minutes: params.Minutes, Sessions: params.Sessions, Words: params.Words}
 	userService := user.NewUserService(dbRepository)
