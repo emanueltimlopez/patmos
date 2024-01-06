@@ -22,7 +22,7 @@
     {{ if .Image }}<fieldset>
       <label for="image">Cover</label>
       <input style="display: none;" id="image" name="image" type="text" value="{{.Image}}">
-      <img src="https://covers.openlibrary.org/b/olid/{{.Image}}-M.jpg"/>
+      <img src="{{.Image}}"/>
     </fieldset>{{ end }}
   </div>
   <fieldset>

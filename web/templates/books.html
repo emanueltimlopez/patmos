@@ -9,7 +9,7 @@
     <ul>
       {{range .Books}}
         <li>
-          <img src="https://covers.openlibrary.org/b/olid/{{.Image}}-M.jpg"/>
+          <img src="{{ .Image }}"/>
           <span>{{ .Title }}</span>
         </li>
       {{ end }}

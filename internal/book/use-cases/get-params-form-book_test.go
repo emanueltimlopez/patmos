@@ -13,10 +13,10 @@ import (
 func TestGetParamsFormBook(t *testing.T) {
 	want := book_usecases.ParamsFormBook{
 		Title:  "sarasa",
-		Author: "sarasa2",
+		Author: []string{"sarasa2"},
 		Pages:  100,
 		Image:  "sarasa3",
-		Isbn:   "sarasa4",
+		Isbn:   []string{"sarasa4"},
 	}
 
 	req := httptest.NewRequest(http.MethodPost, "/", strings.NewReader("title=sarasa&author=sarasa2&pages=100&cover=sarasa3&isbn=sarasa4"))
@@ -27,7 +27,7 @@ func TestGetParamsFormBook(t *testing.T) {
 	if want.Title != params.Title {
 		t.Fatalf(`%q != %v`, want.Title, params.Title)
 	}
-	if want.Author != params.Author {
+	if want.Author[0] != params.Author[0] {
 		t.Fatalf(`%q != %v`, want.Author, params.Author)
 	}
 	if want.Pages != params.Pages {
@@ -36,7 +36,7 @@ func TestGetParamsFormBook(t *testing.T) {
 	if want.Image != params.Image {
 		t.Fatalf(`%q != %v`, want.Image, params.Image)
 	}
-	if want.Isbn != params.Isbn {
+	if want.Isbn[0] != params.Isbn[0] {
 		t.Fatalf(`%q != %v`, want.Isbn, params.Isbn)
 	}
 }
@@ -44,10 +44,10 @@ func TestGetParamsFormBook(t *testing.T) {
 func TestGetParamsFormBook_BadPages(t *testing.T) {
 	want := book_usecases.ParamsFormBook{
 		Title:  "sarasa",
-		Author: "sarasa2",
+		Author: []string{"sarasa2"},
 		Pages:  0,
 		Image:  "sarasa3",
-		Isbn:   "sarasa4",
+		Isbn:   []string{"sarasa4"},
 	}
 
 	req := httptest.NewRequest(http.MethodPost, "/", strings.NewReader("title=sarasa&author=sarasa2&pages=re&cover=sarasa3&isbn=sarasa4"))
@@ -58,7 +58,7 @@ func TestGetParamsFormBook_BadPages(t *testing.T) {
 	if want.Title != params.Title {
 		t.Fatalf(`%q != %v`, want.Title, params.Title)
 	}
-	if want.Author != params.Author {
+	if want.Author[0] != params.Author[0] {
 		t.Fatalf(`%q != %v`, want.Author, params.Author)
 	}
 	if want.Pages != params.Pages {
@@ -67,7 +67,7 @@ func TestGetParamsFormBook_BadPages(t *testing.T) {
 	if want.Image != params.Image {
 		t.Fatalf(`%q != %v`, want.Image, params.Image)
 	}
-	if want.Isbn != params.Isbn {
+	if want.Isbn[0] != params.Isbn[0] {
 		t.Fatalf(`%q != %v`, want.Isbn, params.Isbn)
 	}
 }

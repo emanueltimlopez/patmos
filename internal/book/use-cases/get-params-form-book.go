@@ -4,14 +4,15 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	"strings"
 )
 
 type ParamsFormBook struct {
 	Title  string
-	Author string
+	Author []string
 	Pages  int
 	Image  string
-	Isbn   string
+	Isbn   []string
 }
 
 func GetParamsFormBook(r *http.Request) ParamsFormBook {
@@ -19,7 +20,7 @@ func GetParamsFormBook(r *http.Request) ParamsFormBook {
 	title := r.Form.Get("title")
 	author := r.Form.Get("author")
 	isbn := r.Form.Get("isbn")
-	image := r.Form.Get("cover")
+	image := r.Form.Get("image")
 	pages, err := strconv.Atoi(r.Form.Get("pages"))
 	if err != nil {
 		fmt.Println("[GetParamsFormBook:pages]", err)
@@ -28,9 +29,9 @@ func GetParamsFormBook(r *http.Request) ParamsFormBook {
 
 	return ParamsFormBook{
 		Title:  title,
-		Author: author,
+		Author: strings.Split(author, ","),
 		Pages:  pages,
 		Image:  image,
-		Isbn:   isbn,
+		Isbn:   strings.Split(isbn, ","),
 	}
 }
