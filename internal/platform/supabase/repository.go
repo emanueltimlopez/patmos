@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/emanueltimlopez/books-motivation/internal/book"
-	"github.com/emanueltimlopez/books-motivation/internal/bookshelf"
-	"github.com/emanueltimlopez/books-motivation/internal/user"
+	"github.com/emanueltimlopez/patmos/internal/book"
+	"github.com/emanueltimlopez/patmos/internal/bookshelf"
+	"github.com/emanueltimlopez/patmos/internal/user"
 	supa "github.com/nedpals/supabase-go"
 )
 

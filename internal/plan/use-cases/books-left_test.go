@@ -3,8 +3,8 @@ package plan_usecases_test
 import (
 	"testing"
 
-	plan_usecases "github.com/emanueltimlopez/books-motivation/internal/plan/use-cases"
-	"github.com/emanueltimlopez/books-motivation/internal/user"
+	plan_usecases "github.com/emanueltimlopez/patmos/internal/plan/use-cases"
+	"github.com/emanueltimlopez/patmos/internal/user"
 )
 
 // Should return the params from form book

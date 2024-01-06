@@ -3,7 +3,7 @@ package plan_usecases
 import (
 	"time"
 
-	"github.com/emanueltimlopez/books-motivation/internal/user"
+	"github.com/emanueltimlopez/patmos/internal/user"
 )
 
 func BooksLeft(user *user.User) int {

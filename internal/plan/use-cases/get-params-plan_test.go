@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	plan_usecases "github.com/emanueltimlopez/books-motivation/internal/plan/use-cases"
+	plan_usecases "github.com/emanueltimlopez/patmos/internal/plan/use-cases"
 )
 
 // Should return the params from form book

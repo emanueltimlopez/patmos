@@ -1,4 +1,4 @@
-module github.com/emanueltimlopez/books-motivation
+module github.com/emanueltimlopez/patmos
 
 go 1.21.5
 

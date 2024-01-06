@@ -5,7 +5,7 @@ import (
 	"html/template"
 	"net/http"
 
-	book_usecases "github.com/emanueltimlopez/books-motivation/internal/book/use-cases"
+	book_usecases "github.com/emanueltimlopez/patmos/internal/book/use-cases"
 	supa "github.com/nedpals/supabase-go"
 )
 

@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/emanueltimlopez/books-motivation/internal/routes"
+	"github.com/emanueltimlopez/patmos/internal/routes"
 )
 
 //go:embed web/templates/*.html

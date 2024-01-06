@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/emanueltimlopez/books-motivation/internal/book"
-	book_usecases "github.com/emanueltimlopez/books-motivation/internal/book/use-cases"
-	"github.com/emanueltimlopez/books-motivation/internal/platform/supabase"
+	"github.com/emanueltimlopez/patmos/internal/book"
+	book_usecases "github.com/emanueltimlopez/patmos/internal/book/use-cases"
+	"github.com/emanueltimlopez/patmos/internal/platform/supabase"
 	supa "github.com/nedpals/supabase-go"
 )
 

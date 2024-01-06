@@ -3,7 +3,7 @@ package bookshelf
 import (
 	"context"
 
-	"github.com/emanueltimlopez/books-motivation/internal/book"
+	"github.com/emanueltimlopez/patmos/internal/book"
 )
 
 type Service struct {

@@ -6,10 +6,10 @@ import (
 	"html/template"
 	"net/http"
 
-	"github.com/emanueltimlopez/books-motivation/internal/plan"
-	planUseCases "github.com/emanueltimlopez/books-motivation/internal/plan/use-cases"
-	"github.com/emanueltimlopez/books-motivation/internal/platform/supabase"
-	"github.com/emanueltimlopez/books-motivation/internal/user"
+	"github.com/emanueltimlopez/patmos/internal/plan"
+	planUseCases "github.com/emanueltimlopez/patmos/internal/plan/use-cases"
+	"github.com/emanueltimlopez/patmos/internal/platform/supabase"
+	"github.com/emanueltimlopez/patmos/internal/user"
 	supa "github.com/nedpals/supabase-go"
 )
 

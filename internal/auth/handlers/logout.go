@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/emanueltimlopez/books-motivation/internal/platform/supabase"
+	"github.com/emanueltimlopez/patmos/internal/platform/supabase"
 )
 
 func LogoutHandler(w http.ResponseWriter, r *http.Request) {

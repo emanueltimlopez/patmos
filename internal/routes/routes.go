@@ -6,12 +6,12 @@ import (
 	"io/fs"
 	"net/http"
 
-	"github.com/emanueltimlopez/books-motivation/internal/auth"
-	authHandlers "github.com/emanueltimlopez/books-motivation/internal/auth/handlers"
-	book "github.com/emanueltimlopez/books-motivation/internal/book/handlers"
-	bookshelf "github.com/emanueltimlopez/books-motivation/internal/bookshelf/handlers"
-	home "github.com/emanueltimlopez/books-motivation/internal/home/handlers"
-	plan "github.com/emanueltimlopez/books-motivation/internal/plan/handlers"
+	"github.com/emanueltimlopez/patmos/internal/auth"
+	authHandlers "github.com/emanueltimlopez/patmos/internal/auth/handlers"
+	book "github.com/emanueltimlopez/patmos/internal/book/handlers"
+	bookshelf "github.com/emanueltimlopez/patmos/internal/bookshelf/handlers"
+	home "github.com/emanueltimlopez/patmos/internal/home/handlers"
+	plan "github.com/emanueltimlopez/patmos/internal/plan/handlers"
 )
 
 var Templates embed.FS

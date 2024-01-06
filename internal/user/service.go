@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/emanueltimlopez/books-motivation/internal/plan"
+	"github.com/emanueltimlopez/patmos/internal/plan"
 )
 
 type Service struct {

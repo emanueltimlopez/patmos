@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	book_usecases "github.com/emanueltimlopez/books-motivation/internal/book/use-cases"
+	book_usecases "github.com/emanueltimlopez/patmos/internal/book/use-cases"
 	"github.com/google/uuid"
 )
 

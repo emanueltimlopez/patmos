@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/emanueltimlopez/books-motivation/internal/plan"
-	"github.com/emanueltimlopez/books-motivation/internal/platform/supabase"
-	"github.com/emanueltimlopez/books-motivation/internal/user"
+	"github.com/emanueltimlopez/patmos/internal/plan"
+	"github.com/emanueltimlopez/patmos/internal/platform/supabase"
+	"github.com/emanueltimlopez/patmos/internal/user"
 	supa "github.com/nedpals/supabase-go"
 )
 

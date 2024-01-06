@@ -1,6 +1,6 @@
 package user
 
-import "github.com/emanueltimlopez/books-motivation/internal/plan"
+import "github.com/emanueltimlopez/patmos/internal/plan"
 
 type User struct {
 	ID    string    `json:"id"`
