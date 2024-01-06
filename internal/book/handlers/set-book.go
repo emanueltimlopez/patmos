@@ -19,15 +19,13 @@ type BookFromView struct {
 func SetBookHandler(w http.ResponseWriter, r *http.Request, userSupa *supa.User) {
 	params := book_usecases.GetParamsFormBook(r)
 
-	finalAuthor := strings.Join(params.Author, ",")
-	finalIsbn := strings.Join(params.Isbn, ",")
 	imageURL := "https://covers.openlibrary.org/b/olid/" + params.Image + "-M.jpg"
 
 	TmplComponents.ExecuteTemplate(w, "book-form.html", BookFromView{
 		Title:  params.Title,
-		Author: finalAuthor,
+		Author: strings.Join(params.Author, ","),
 		Pages:  params.Pages,
 		Image:  imageURL,
-		Isbn:   finalIsbn,
+		Isbn:   strings.Join(params.Isbn, ","),
 	})
 }

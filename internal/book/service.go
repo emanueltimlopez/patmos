@@ -3,7 +3,6 @@ package book
 import (
 	"context"
 	"fmt"
-	"strings"
 
 	book_usecases "github.com/emanueltimlopez/patmos/internal/book/use-cases"
 	"github.com/google/uuid"
@@ -26,16 +25,13 @@ func (bs *Service) GetBook(ctx context.Context, id string) (*Book, error) {
 
 func (bs *Service) CreateBook(ctx context.Context, params book_usecases.ParamsFormBook, id string) error {
 
-	stringAuthors := "[" + strings.Join(params.Author, ",") + "]"
-	stringIsbn := "[" + strings.Join(params.Isbn, ",") + "]"
-
 	newBook := Book{
 		Title:  params.Title,
-		Author: strings.Split(stringAuthors, ","),
+		Author: params.Author,
 		ID:     uuid.New().String(),
 		Pages:  params.Pages,
 		Image:  params.Image,
-		Isbn:   strings.Split(stringIsbn, ","),
+		Isbn:   params.Isbn,
 	}
 
 	book, err := bs.repo.CreateBook(ctx, newBook, id)
@@ -44,7 +40,7 @@ func (bs *Service) CreateBook(ctx context.Context, params book_usecases.ParamsFo
 		return err
 	}
 
-	relation := UserBooksRelation{UserID: id, BookID: book.ID}
+	relation := UserBooksRelation{UserID: id, BookID: book.ID, Folder: params.Folder}
 	_err := bs.repo.AsociateBook(ctx, relation)
 	if _err != nil {
 		fmt.Println(_err)

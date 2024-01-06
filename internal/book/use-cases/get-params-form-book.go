@@ -13,6 +13,7 @@ type ParamsFormBook struct {
 	Pages  int
 	Image  string
 	Isbn   []string
+	Folder string
 }
 
 func GetParamsFormBook(r *http.Request) ParamsFormBook {
@@ -21,6 +22,7 @@ func GetParamsFormBook(r *http.Request) ParamsFormBook {
 	author := r.Form.Get("author")
 	isbn := r.Form.Get("isbn")
 	image := r.Form.Get("image")
+	folder := r.Form.Get("folder")
 	pages, err := strconv.Atoi(r.Form.Get("pages"))
 	if err != nil {
 		fmt.Println("[GetParamsFormBook:pages]", err)
@@ -33,5 +35,6 @@ func GetParamsFormBook(r *http.Request) ParamsFormBook {
 		Pages:  pages,
 		Image:  image,
 		Isbn:   strings.Split(isbn, ","),
+		Folder: folder,
 	}
 }
