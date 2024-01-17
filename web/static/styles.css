@@ -298,3 +298,8 @@ a {
   display: flex;
   justify-content: space-between;
 }
+
+.text-intro {
+  font-size: 1.1em;
+  text-align: center;
+}
