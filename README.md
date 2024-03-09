@@ -1,8 +1,14 @@
 ### Run app
+```bash
 go run main.go
+```
 
 ### Run tests
-go test -v ./... -cover  
+```bash
+go test -v ./... -cover
+```
 
 ### Deploy
+```bash
 fly deploy
+```
